@@ -371,6 +371,54 @@ theorem add_spec (a b : Scalar52)
   progress* ...
 ```
 
+
+---
+
+## Expressive specs
+
+- Not using RFCs for the specs
+- Working with the mathematical structure of the Edwards curve
+
+**Multiple different representations of the curve:**
+- `backend.serial.curve_models.ProjectivePoint`
+- `backend.serial.curve_models.CompletedPoint`
+- `backend.serial.curve_models.ProjectiveNielsPoint`
+- `edwards.EdwardsPoint`
+- `edwards.affine.AffinePoint`
+- `edwards.CompressedEdwardsY`
+- `montgomery.MontgomeryPoint`
+- `ristretto.RistrettoPoint`
+- `ristretto.CompressedRistretto`
+
+---
+
+### Example function: `double` - Lean specs
+
+**Low-level spec (coordinate formulas):**
+
+```lean
+theorem double_spec (q : ProjectivePoint) (bounds...) :
+    ∃ c, double q = ok c ∧
+    let X := Field51_as_Nat q.X; let Y := Field51_as_Nat q.Y
+    let Z := Field51_as_Nat q.Z
+    let X' := Field51_as_Nat c.X; let Y' := Field51_as_Nat c.Y
+    let Z' := Field51_as_Nat c.Z; let T' := Field51_as_Nat c.T
+    X' % p = (2 * X * Y) % p ∧
+    Y' % p = (Y^2 + X^2) % p ∧
+    (Z' + X^2) % p = Y^2 % p ∧
+    (T' + Z') % p = (2 * Z^2) % p := by ...
+```
+
+**High-level spec (mathematical meaning):**
+
+```lean
+theorem double_spec' (q : ProjectivePoint) (hq : q.IsValid) :
+    ∃ result : CompletedPoint, ProjectivePoint.double q = ok result ∧
+    result.IsValid ∧
+    result.toPoint = q.toPoint + q.toPoint := by ...
+```
+
+
 ---
 
 ## Trust model
@@ -426,51 +474,7 @@ Extensive CI checks
 
 ---
 
-## Expressive specs
-
-- Not using RFCs for the specs
-- Working with the mathematical structure of the Edwards curve
-
-**Multiple different representations of the curve:**
-- `backend.serial.curve_models.ProjectivePoint`
-- `backend.serial.curve_models.CompletedPoint`
-- `backend.serial.curve_models.ProjectiveNielsPoint`
-- `edwards.EdwardsPoint`
-- `edwards.affine.AffinePoint`
-- `edwards.CompressedEdwardsY`
-- `montgomery.MontgomeryPoint`
-- `ristretto.RistrettoPoint`
-- `ristretto.CompressedRistretto`
-
----
-
-### Example function: `double` - Lean specs
-
-**Low-level spec (coordinate formulas):**
-
-```lean
-theorem double_spec (q : ProjectivePoint) (bounds...) :
-    ∃ c, double q = ok c ∧
-    let X := Field51_as_Nat q.X; let Y := Field51_as_Nat q.Y
-    let Z := Field51_as_Nat q.Z
-    let X' := Field51_as_Nat c.X; let Y' := Field51_as_Nat c.Y
-    let Z' := Field51_as_Nat c.Z; let T' := Field51_as_Nat c.T
-    X' % p = (2 * X * Y) % p ∧
-    Y' % p = (Y^2 + X^2) % p ∧
-    (Z' + X^2) % p = Y^2 % p ∧
-    (T' + Z') % p = (2 * Z^2) % p := by ...
-```
-
-**High-level spec (mathematical meaning):**
-
-```lean
-theorem double_spec' (q : ProjectivePoint) (hq : q.IsValid) :
-    ∃ result : CompletedPoint, ProjectivePoint.double q = ok result ∧
-    result.IsValid ∧
-    result.toPoint = q.toPoint + q.toPoint := by ...
-```
-
----
+## Next steps
 
 ### Process overview
 
@@ -488,14 +492,11 @@ theorem double_spec' (q : ProjectivePoint) (hq : q.IsValid) :
 
 ---
 
-## Next steps
+### Refinements
 
 - Faster version of `progress*` (or `mvcgen`)
 - Complete the proofs of this crate
 - Look at another crate with slightly different character
-
-### Refinements
-
 - Connect to another Lean verified crate for external functions?
 - Presentation of spec statements? Lean specs within Rust docs?
 - Complete support for Rust syntax.
