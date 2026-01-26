@@ -159,13 +159,23 @@ pub fn negate(&mut self) {
 
 ### Example function: `double`
 
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+
 ```rust
 pub struct ProjectivePoint {
     pub X: FieldElement51,
     pub Y: FieldElement51,
     pub Z: FieldElement51,
 }
+```
 
+</div>
+
+<div>
+
+```rust
 pub struct CompletedPoint {
     pub X: FieldElement51,
     pub Y: FieldElement51,
@@ -173,11 +183,13 @@ pub struct CompletedPoint {
     pub T: FieldElement51,
 }
 ```
---- 
+
+</div>
+
+</div>
 
 ```rust
-impl ProjectivePoint {
-    /// Double this point: return self + self
+impl ProjectivePoint {   /// Double this point: return self + self
     pub fn double(&self) -> CompletedPoint {
         let XX = self.X.square();
         let YY = self.Y.square();
@@ -196,10 +208,6 @@ impl ProjectivePoint {
     }
 }
 ```
-
-<!-- TODO: arrange so that this fits on previous slide -->
-
-Structures to conveniently encode a point on the elliptic curve
 
 ---
 
