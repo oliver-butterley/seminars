@@ -189,22 +189,20 @@ pub struct CompletedPoint {
 </div>
 
 ```rust
-impl ProjectivePoint {   /// Double this point: return self + self
-    pub fn double(&self) -> CompletedPoint {
-        let XX = self.X.square();
-        let YY = self.Y.square();
-        let ZZ2 = self.Z.square2();
-        let X_plus_Y = &self.X + &self.Y;
-        let X_plus_Y_sq = X_plus_Y.square();
-        let YY_plus_XX = &YY + &XX;
-        let YY_minus_XX = &YY - &XX;
+pub fn ProjectivePoint.double(&self) -> CompletedPoint {
+    let XX = self.X.square();
+    let YY = self.Y.square();
+    let ZZ2 = self.Z.square2();
+    let X_plus_Y = &self.X + &self.Y;
+    let X_plus_Y_sq = X_plus_Y.square();
+    let YY_plus_XX = &YY + &XX;
+    let YY_minus_XX = &YY - &XX;
 
-        CompletedPoint {
-            X: &X_plus_Y_sq - &YY_plus_XX,
-            Y: YY_plus_XX,
-            Z: YY_minus_XX,
-            T: &ZZ2 - &YY_minus_XX,
-        }
+    CompletedPoint {
+        X: &X_plus_Y_sq - &YY_plus_XX,
+        Y: YY_plus_XX,
+        Z: YY_minus_XX,
+        T: &ZZ2 - &YY_minus_XX,
     }
 }
 ```
