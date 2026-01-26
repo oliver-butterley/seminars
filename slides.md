@@ -72,7 +72,9 @@ We choose Rust verified in Lean via Aeneas because it is the most relevant combi
 - Structures to describe points on the elliptic curve, scalars, functions for manipulating them fast
 - ~200 functions
 
-<!-- TODO: add graph to illustrate the scale of the project -->
+---
+
+<img src="/images/graph.png" class="h-full w-full object-contain" />
 
 ---
 
