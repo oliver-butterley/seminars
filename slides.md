@@ -462,8 +462,6 @@ theorem double_spec' (q : ProjectivePoint) (hq : q.IsValid) :
 
 To trust that curve25519-dalek satisfies the proven specifications:
 
-<v-clicks>
-
 1. **The Lean Proof Checker**
    - Lean's minimal trusted kernel guarantees correctness
 
@@ -476,8 +474,6 @@ To trust that curve25519-dalek satisfies the proven specifications:
 
 4. **External specifications**
    - External dependencies have specs in `FunsExternal.lean` and `TypesExternal.lean`
-
-</v-clicks>
 
  
 ---
