@@ -69,7 +69,7 @@ We choose Rust verified in Lean via Aeneas because it is the most relevant combi
 ## A Rust crate of cryptographic primitives: curve25519-dalek
 
 - Provides fast, safe cryptographic primitives (elliptic curve cryptography) used by thousands of projects for key agreement, signatures and zero-knowledge proofs
-- Structures to describe points on the elliptic curve, scalars, functions for manipulating them fast
+- Structures to describe points on the elliptic curve and scalars together with functions for manipulating them fast
 - ~200 functions
 
 ---
