@@ -1,0 +1,13 @@
+{
+  "name": "curve25519-dalek-seminar",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.49.28",
+    "@slidev/theme-default": "latest"
+  }
+}
