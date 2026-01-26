@@ -10,18 +10,26 @@ drawings:
   persist: false
 transition: slide-left
 mdc: true
+layout: cover
 ---
 
 # Large scale verification of production cryptography code using Lean
 
 **Oliver Butterley**
 
+<div class="opacity-80">
+
 The Beneficial AI Foundation & University of Rome Tor Vergata
 
-TODO: add both logos
-TODO: use a title page style for this page
+</div>
+
+<div class="abs-bottom mb-8 opacity-50">
 
 Bonn, 27 January 2026
+
+</div>
+
+<!-- TODO: add both logos -->
 
 ---
 
@@ -45,13 +53,13 @@ We choose Rust verified in Lean via Aeneas because it is the most relevant combi
 
 ---
 
-## A Rust crate of cyptographic primatives: curve25519-dalek
+## A Rust crate of cryptographic primitives: curve25519-dalek
 
 - Provides fast, safe cryptographic primitives (elliptic curve cryptography) used by thousands of projects for key agreement, signatures and zero-knowledge proofs
 - Structures to describe points on the elliptic curve, scalars, functions for manipulating them fast
 - ~200 functions
 
-TODO: add graph to illustrate the scale of the project.
+<!-- TODO: add graph to illustrate the scale of the project -->
 
 ---
 
@@ -174,7 +182,7 @@ impl ProjectivePoint {
 }
 ```
 
-TODO: arrange so that this fits on previous slide
+<!-- TODO: arrange so that this fits on previous slide -->
 
 Structures to conveniently encode a point on the elliptic curve
 
@@ -278,7 +286,7 @@ ok limbs10
 
 ---
 
-## Spec theroems
+## Spec theorems
 
 ### Example function: `reduce`
 
