@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm">
+  <defs>
+    <marker id="dep" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3" markerHeight="3" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#A07040"/>
+    </marker>
+  </defs>
+
+  <rect width="297" height="210" fill="#F7F8FA"/>
+
+  <!-- ===== TITLE ===== -->
+  <text x="110" y="8" font-size="6" font-weight="bold" fill="#1B2A4A" text-anchor="middle" font-family="sans-serif">Verify Libsignal in Lean</text>
+  <text x="110" y="12" font-size="1.7" fill="#8090A8" text-anchor="middle" font-style="italic" font-family="sans-serif">Verify — proofs live side-by-side with code, called in CI; end-to-end functional verification to security proofs</text>
+
+  <!-- ===== PROOF BOXES ===== -->
+
+  <!-- PQXDH -->
+  <rect x="5" y="18" width="49" height="34" rx="2" fill="#2B4C7E"/>
+  <text x="29.5" y="26" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">PQXDH</text>
+  <text x="29.5" y="29.5" font-size="2" fill="white" opacity="0.8" text-anchor="middle" font-family="sans-serif">Computational Proof</text>
+  <line x1="9" y1="31" x2="50" y2="31" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="8" y="34.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">Lean theorem: PQXDH achieves its</text>
+  <text x="8" y="37" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">security definition. Reduces to</text>
+  <text x="8" y="39.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">ML-KEM hardness &amp; CDH.</text>
+
+  <!-- Double Ratchet -->
+  <rect x="57" y="18" width="49" height="34" rx="2" fill="#3A5F8A"/>
+  <text x="81.5" y="26" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">Double Ratchet</text>
+  <text x="81.5" y="29.5" font-size="2" fill="white" opacity="0.8" text-anchor="middle" font-family="sans-serif">Computational Proof</text>
+  <line x1="61" y1="31" x2="102" y2="31" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="60" y="34.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">Formalise in Lean the security</text>
+  <text x="60" y="37" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">theorem of Cohn-Gordon et al.</text>
+  <text x="60" y="39.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">2019.</text>
+
+  <!-- SPQR / Triple Ratchet -->
+  <rect x="109" y="18" width="49" height="34" rx="2" fill="#4A7396"/>
+  <text x="133.5" y="26" font-size="2.6" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">SPQR / Triple Ratchet</text>
+  <text x="133.5" y="29.5" font-size="2" fill="white" opacity="0.8" text-anchor="middle" font-family="sans-serif">Proof</text>
+  <line x1="113" y1="31" x2="154" y2="31" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="112" y="34.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">Formalise SPQR security proof</text>
+  <text x="112" y="37" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">from EuroCrypt / USENIX papers,</text>
+  <text x="112" y="39.5" font-size="1.7" fill="white" opacity="0.7" font-family="sans-serif">building on ratchet infrastructure.</text>
+
+  <!-- Protocol Composition (BONUS) -->
+  <rect x="161" y="18" width="49" height="34" rx="2" fill="#E8C547" fill-opacity="0.3" stroke="#C9A020" stroke-width="0.8" stroke-dasharray="2,1"/>
+  <rect x="163" y="20" width="14" height="3.5" rx="1" fill="#C9A020"/>
+  <text x="170" y="22.5" font-size="1.5" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">BONUS</text>
+  <text x="185.5" y="28" font-size="2.5" font-weight="bold" fill="#5A4A00" text-anchor="middle" font-family="sans-serif">Protocol Composition</text>
+  <line x1="165" y1="30" x2="206" y2="30" stroke="#5A4A00" stroke-opacity="0.2" stroke-width="0.3"/>
+  <text x="164" y="33.5" font-size="1.7" fill="#5A4A00" opacity="0.7" font-family="sans-serif">PQXDH init + Triple Ratchet →</text>
+  <text x="164" y="36" font-size="1.7" fill="#5A4A00" opacity="0.7" font-family="sans-serif">end-to-end security for a full</text>
+  <text x="164" y="38.5" font-size="1.7" fill="#5A4A00" opacity="0.7" font-family="sans-serif">conversation session.</text>
+
+  <!-- ===== ABSTRACT CRYPTOGRAPHIC INFRASTRUCTURE ===== -->
+  <text x="5" y="56" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Abstract Cryptographic Infrastructure</text>
+  <text x="134" y="56" font-size="1.5" fill="#B83030" font-style="italic" font-family="sans-serif">Security Games</text>
+
+  <!-- Primitives -->
+  <rect x="5" y="59" width="28" height="14" rx="1.5" fill="#1E7A5A"/>
+  <text x="19" y="67.5" font-size="2.4" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">KEM</text>
+  <text x="19" y="70.5" font-size="1.2" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Key Encapsulation</text>
+
+  <rect x="36" y="59" width="28" height="14" rx="1.5" fill="#1E7A5A"/>
+  <text x="50" y="67.5" font-size="2.4" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">DH</text>
+  <text x="50" y="70.5" font-size="1.2" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Diffie–Hellman</text>
+
+  <rect x="67" y="59" width="28" height="14" rx="1.5" fill="#1E7A5A"/>
+  <text x="81" y="67.5" font-size="2.4" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">AEAD</text>
+  <text x="81" y="70.5" font-size="1.2" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Auth. Encryption</text>
+
+  <rect x="98" y="59" width="28" height="14" rx="1.5" fill="#1E7A5A"/>
+  <text x="112" y="67.5" font-size="2.4" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">KDF</text>
+  <text x="112" y="70.5" font-size="1.2" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Key Derivation</text>
+
+  <!-- Security Games -->
+  <rect x="134" y="59" width="32" height="14" rx="1.5" fill="#B83030"/>
+  <text x="150" y="67.5" font-size="2.2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">IND-CCA2</text>
+  <text x="150" y="70.5" font-size="1.1" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Chosen-Ciphertext</text>
+
+  <rect x="169" y="59" width="24" height="14" rx="1.5" fill="#B83030"/>
+  <text x="181" y="67.5" font-size="2.4" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">PRF</text>
+  <text x="181" y="70.5" font-size="1.1" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">Pseudorandom Fn</text>
+
+  <rect x="196" y="59" width="14" height="14" rx="1.5" fill="#B83030" fill-opacity="0.4" stroke="#B83030" stroke-width="0.4" stroke-dasharray="1.5,1"/>
+  <text x="203" y="68" font-size="2.5" fill="#B83030" text-anchor="middle" font-family="sans-serif">…</text>
+
+  <!-- ===== RUST CRATES (Named) ===== -->
+  <text x="5" y="78" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Rust Crates</text>
+
+  <!-- SPQR crate -->
+  <rect x="5" y="80" width="64" height="28" rx="2" fill="#C85A2B"/>
+  <line x1="5" y1="88" x2="69" y2="88" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="8" y="86" font-size="1.4" fill="white" opacity="0.85" font-family="monospace">spqr::init()  encrypt()  decrypt()</text>
+  <text x="37" y="99" font-size="3.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">SPQR</text>
+
+  <!-- Crate B (TBD) -->
+  <rect x="73" y="80" width="64" height="28" rx="2" fill="#C85A2B" opacity="0.75"/>
+  <line x1="73" y1="88" x2="137" y2="88" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="76" y="86" font-size="1.4" fill="white" opacity="0.6" font-family="monospace" font-style="italic">entry points TBD</text>
+  <text x="105" y="97" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">Crate B</text>
+  <text x="105" y="101" font-size="1.5" fill="white" opacity="0.55" text-anchor="middle" font-style="italic" font-family="sans-serif">name to be determined</text>
+
+  <!-- Crate C (TBD) -->
+  <rect x="141" y="80" width="64" height="28" rx="2" fill="#C85A2B" opacity="0.75"/>
+  <line x1="141" y1="88" x2="205" y2="88" stroke="white" stroke-opacity="0.15" stroke-width="0.3"/>
+  <text x="144" y="86" font-size="1.4" fill="white" opacity="0.6" font-family="monospace" font-style="italic">entry points TBD</text>
+  <text x="173" y="97" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">Crate C</text>
+  <text x="173" y="101" font-size="1.5" fill="white" opacity="0.55" text-anchor="middle" font-style="italic" font-family="sans-serif">name to be determined</text>
+
+  <!-- ===== CRATE DEPENDENCY CLUSTER ===== -->
+  <text x="5" y="114" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Crate Dependency Graph</text>
+  <text x="68" y="114" font-size="1.4" fill="#999" font-style="italic" font-family="sans-serif">(suggestive — actual structure TBD)</text>
+
+  <!-- Dependency arrows (drawn first so boxes sit on top) -->
+  <line x1="47" y1="134" x2="69" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="91" y1="134" x2="69" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="91" y1="134" x2="113" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="135" y1="134" x2="113" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="69" y1="160" x2="47" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="69" y1="160" x2="91" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="113" y1="160" x2="91" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="113" y1="160" x2="135" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="135" y1="134" x2="135" y2="168" stroke="#A07040" stroke-width="0.4" stroke-dasharray="1.5,1" marker-end="url(#dep)"/>
+
+  <!-- Row 1 -->
+  <rect x="32" y="116" width="30" height="18" rx="1.5" fill="#D08040"/>
+  <line x1="32" y1="123" x2="62" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="34" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encrypt() decrypt()</text>
+  <text x="47" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-crypto</text>
+
+  <rect x="76" y="116" width="30" height="18" rx="1.5" fill="#CC7535"/>
+  <line x1="76" y1="123" x2="106" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="78" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">basepoint_mul()</text>
+  <text x="91" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">curve25519</text>
+
+  <rect x="120" y="116" width="30" height="18" rx="1.5" fill="#C06A2A"/>
+  <line x1="120" y1="123" x2="150" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="122" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">seal() open()</text>
+  <text x="135" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">aes-gcm-siv</text>
+
+  <!-- Row 2 -->
+  <rect x="54" y="142" width="30" height="18" rx="1.5" fill="#D48840"/>
+  <line x1="54" y1="149" x2="84" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="56" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">diffie_hellman()</text>
+  <text x="69" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">x25519</text>
+
+  <rect x="98" y="142" width="30" height="18" rx="1.5" fill="#C87A30"/>
+  <line x1="98" y1="149" x2="128" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="100" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">expand() extract()</text>
+  <text x="113" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">hkdf</text>
+
+  <!-- Row 3 -->
+  <rect x="32" y="168" width="30" height="18" rx="1.5" fill="#D09050"/>
+  <line x1="32" y1="175" x2="62" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="34" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encode() decode()</text>
+  <text x="47" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protobuf</text>
+
+  <rect x="76" y="168" width="30" height="18" rx="1.5" fill="#C48038"/>
+  <line x1="76" y1="175" x2="106" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="78" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">load() store()</text>
+  <text x="91" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">session-store</text>
+
+  <rect x="120" y="168" width="30" height="18" rx="1.5" fill="#B87030"/>
+  <line x1="120" y1="175" x2="150" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="122" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">get_key() put_key()</text>
+  <text x="135" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">key-store</text>
+
+  <!-- ===== SIDE PANEL ===== -->
+
+  <!-- Improve Toolchain -->
+  <rect x="218" y="18" width="74" height="44" rx="2.5" fill="#F0EBF8" stroke="#7B68AE" stroke-width="0.7"/>
+  <text x="255" y="32" font-size="2.8" font-weight="bold" fill="#4A3580" text-anchor="middle" font-family="sans-serif">Improve Toolchain</text>
+  <line x1="228" y1="35" x2="282" y2="35" stroke="#7B68AE" stroke-opacity="0.3" stroke-width="0.3"/>
+  <text x="255" y="40" font-size="2" fill="#6B5B8A" text-anchor="middle" font-family="sans-serif">Rust → Lean extraction</text>
+  <text x="255" y="44" font-size="2" fill="#6B5B8A" text-anchor="middle" font-family="sans-serif">Lean proving tools</text>
+
+  <!-- Visualisation -->
+  <rect x="218" y="68" width="74" height="44" rx="2.5" fill="#EBF0F8" stroke="#5B78AE" stroke-width="0.7"/>
+  <text x="255" y="80" font-size="2.5" font-weight="bold" fill="#354580" text-anchor="middle" font-family="sans-serif">Visualisation of</text>
+  <text x="255" y="84" font-size="2.5" font-weight="bold" fill="#354580" text-anchor="middle" font-family="sans-serif">Status &amp; Progress</text>
+  <line x1="228" y1="87" x2="282" y2="87" stroke="#5B78AE" stroke-opacity="0.3" stroke-width="0.3"/>
+  <text x="255" y="92" font-size="2" fill="#5B6B8A" text-anchor="middle" font-family="sans-serif">Overview and per repo</text>
+
+</svg>
