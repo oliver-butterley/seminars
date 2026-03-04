@@ -40,3 +40,13 @@ for each crate highlight the entry-point functions at the top of the box
 below that, display the idea of many crates, variously depending on others, each with the entry point functions suggested by a different part at the top of the box.
 
 
+## Tasks
+
+- Refine the list of abstract models/interfaces
+- Create each abstract interfaces
+- Identify the libsignal entry point functions
+- Write specs for each entry point function
+- Determine all dependency crates & entry point functions for each crate
+- Use Aeneas to extract each crate to Lean
+- Establish a standard structure and utils for repos (building on the lessons we have learnt with lean-dalek) verifying rust crates.
+- Prove functional correctness for each crate
