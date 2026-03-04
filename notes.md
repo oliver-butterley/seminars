@@ -50,3 +50,4 @@ below that, display the idea of many crates, variously depending on others, each
 - Use Aeneas to extract each crate to Lean
 - Establish a standard structure and utils for repos (building on the lessons we have learnt with lean-dalek) verifying rust crates.
 - Prove functional correctness for each crate
+- Make the lean-dalek repo impressive in all details, a guide for how other verification projects can be
