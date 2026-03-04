@@ -12,6 +12,7 @@
   <text x="110" y="12" font-size="1.7" fill="#8090A8" text-anchor="middle" font-style="italic" font-family="sans-serif">Verify — proofs live side-by-side with code, called in CI; end-to-end functional verification to security proofs</text>
 
   <!-- ===== PROOF BOXES ===== -->
+  <text x="5" y="16" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Security Proofs</text>
 
   <!-- PQXDH -->
   <rect x="5" y="18" width="49" height="34" rx="2" fill="#2B4C7E"/>
@@ -107,62 +108,100 @@
   <text x="173" y="101" font-size="1.5" fill="white" opacity="0.55" text-anchor="middle" font-style="italic" font-family="sans-serif">name to be determined</text>
 
   <!-- ===== CRATE DEPENDENCY CLUSTER ===== -->
-  <text x="5" y="114" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Crate Dependency Graph</text>
-  <text x="68" y="114" font-size="1.4" fill="#999" font-style="italic" font-family="sans-serif">(suggestive — actual structure TBD)</text>
+  <text x="5" y="114" font-size="2.5" font-weight="bold" fill="#444" font-family="sans-serif">Dependencies</text>
+  <text x="40" y="114" font-size="1.4" fill="#999" font-style="italic" font-family="sans-serif">(suggestive — actual structure TBD)</text>
 
-  <!-- Dependency arrows (drawn first so boxes sit on top) -->
-  <line x1="47" y1="134" x2="69" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="91" y1="134" x2="69" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="91" y1="134" x2="113" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="135" y1="134" x2="113" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="69" y1="160" x2="47" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="69" y1="160" x2="91" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="113" y1="160" x2="91" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="113" y1="160" x2="135" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
-  <line x1="135" y1="134" x2="135" y2="168" stroke="#A07040" stroke-width="0.4" stroke-dasharray="1.5,1" marker-end="url(#dep)"/>
+  <!-- Arrows from named crates → dependency row 1 -->
+  <line x1="37" y1="108" x2="20" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="37" y1="108" x2="77" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="105" y1="108" x2="77" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="105" y1="108" x2="134" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="173" y1="108" x2="134" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="173" y1="108" x2="190" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="37" y1="108" x2="134" y2="116" stroke="#A07040" stroke-width="0.4" marker-end="url(#dep)"/>
+  <line x1="105" y1="108" x2="20" y2="116" stroke="#A07040" stroke-width="0.4" marker-end="url(#dep)"/>
+  <line x1="173" y1="108" x2="190" y2="116" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
 
-  <!-- Row 1 -->
-  <rect x="32" y="116" width="30" height="18" rx="1.5" fill="#D08040"/>
-  <line x1="32" y1="123" x2="62" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="34" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encrypt() decrypt()</text>
-  <text x="47" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-crypto</text>
+  <!-- Dependency arrows (4-3-4 layout spanning x=5..205) -->
+  <!-- Row 1→2 -->
+  <line x1="20" y1="134" x2="48" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="77" y1="134" x2="48" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="77" y1="134" x2="105" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="134" y1="134" x2="105" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="134" y1="134" x2="162" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="190" y1="134" x2="162" y2="142" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <!-- Row 2→3 -->
+  <line x1="48" y1="160" x2="20" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="48" y1="160" x2="77" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="105" y1="160" x2="77" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="105" y1="160" x2="134" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="162" y1="160" x2="134" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="162" y1="160" x2="190" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <!-- Cross-level (straight lines, go behind boxes) -->
+  <line x1="20" y1="134" x2="20" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="190" y1="134" x2="190" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="77" y1="134" x2="134" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="190" y1="134" x2="134" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="20" y1="134" x2="77" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
+  <line x1="134" y1="134" x2="190" y2="168" stroke="#A07040" stroke-width="0.5" marker-end="url(#dep)"/>
 
-  <rect x="76" y="116" width="30" height="18" rx="1.5" fill="#CC7535"/>
-  <line x1="76" y1="123" x2="106" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="78" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">basepoint_mul()</text>
-  <text x="91" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">curve25519</text>
+  <!-- Row 1 (4 crates) -->
+  <rect x="5" y="116" width="30" height="18" rx="1.5" fill="#D08040"/>
+  <line x1="5" y1="123" x2="35" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="7" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encrypt() decrypt()</text>
+  <text x="20" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-crypto</text>
 
-  <rect x="120" y="116" width="30" height="18" rx="1.5" fill="#C06A2A"/>
-  <line x1="120" y1="123" x2="150" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="122" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">seal() open()</text>
-  <text x="135" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">aes-gcm-siv</text>
+  <rect x="62" y="116" width="30" height="18" rx="1.5" fill="#CC7535"/>
+  <line x1="62" y1="123" x2="92" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="64" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">basepoint_mul()</text>
+  <text x="77" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">curve25519</text>
 
-  <!-- Row 2 -->
-  <rect x="54" y="142" width="30" height="18" rx="1.5" fill="#D48840"/>
-  <line x1="54" y1="149" x2="84" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="56" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">diffie_hellman()</text>
-  <text x="69" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">x25519</text>
+  <rect x="119" y="116" width="30" height="18" rx="1.5" fill="#C06A2A"/>
+  <line x1="119" y1="123" x2="149" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="121" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">seal() open()</text>
+  <text x="134" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">aes-gcm-siv</text>
 
-  <rect x="98" y="142" width="30" height="18" rx="1.5" fill="#C87A30"/>
-  <line x1="98" y1="149" x2="128" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="100" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">expand() extract()</text>
-  <text x="113" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">hkdf</text>
+  <rect x="175" y="116" width="30" height="18" rx="1.5" fill="#C48038"/>
+  <line x1="175" y1="123" x2="205" y2="123" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="177" y="121" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">digest() update()</text>
+  <text x="190" y="131" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">sha2</text>
 
-  <!-- Row 3 -->
-  <rect x="32" y="168" width="30" height="18" rx="1.5" fill="#D09050"/>
-  <line x1="32" y1="175" x2="62" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="34" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encode() decode()</text>
-  <text x="47" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protobuf</text>
+  <!-- Row 2 (3 crates) -->
+  <rect x="33" y="142" width="30" height="18" rx="1.5" fill="#D48840"/>
+  <line x1="33" y1="149" x2="63" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="35" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">diffie_hellman()</text>
+  <text x="48" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">x25519</text>
 
-  <rect x="76" y="168" width="30" height="18" rx="1.5" fill="#C48038"/>
-  <line x1="76" y1="175" x2="106" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="78" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">load() store()</text>
-  <text x="91" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">session-store</text>
+  <rect x="90" y="142" width="30" height="18" rx="1.5" fill="#C87A30"/>
+  <line x1="90" y1="149" x2="120" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="92" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">expand() extract()</text>
+  <text x="105" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">hkdf</text>
 
-  <rect x="120" y="168" width="30" height="18" rx="1.5" fill="#B87030"/>
-  <line x1="120" y1="175" x2="150" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
-  <text x="122" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">get_key() put_key()</text>
-  <text x="135" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">key-store</text>
+  <rect x="147" y="142" width="30" height="18" rx="1.5" fill="#D09050"/>
+  <line x1="147" y1="149" x2="177" y2="149" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="149" y="147" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">fill_bytes() gen()</text>
+  <text x="162" y="157" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">rand</text>
+
+  <!-- Row 3 (4 crates) -->
+  <rect x="5" y="168" width="30" height="18" rx="1.5" fill="#D09050"/>
+  <line x1="5" y1="175" x2="35" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="7" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">encode() decode()</text>
+  <text x="20" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protobuf</text>
+
+  <rect x="62" y="168" width="30" height="18" rx="1.5" fill="#C48038"/>
+  <line x1="62" y1="175" x2="92" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="64" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">load() store()</text>
+  <text x="77" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">session-store</text>
+
+  <rect x="119" y="168" width="30" height="18" rx="1.5" fill="#B87030"/>
+  <line x1="119" y1="175" x2="149" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="121" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">get_key() put_key()</text>
+  <text x="134" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">key-store</text>
+
+  <rect x="175" y="168" width="30" height="18" rx="1.5" fill="#B06828"/>
+  <line x1="175" y1="175" x2="205" y2="175" stroke="white" stroke-opacity="0.12" stroke-width="0.2"/>
+  <text x="177" y="173" font-size="1.2" fill="white" opacity="0.8" font-family="monospace">zeroize()</text>
+  <text x="190" y="183" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">zeroize</text>
 
   <!-- ===== SIDE PANEL ===== -->
 
