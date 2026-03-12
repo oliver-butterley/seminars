@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" width="297mm" height="210mm">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#777"/>
+    </marker>
+    <marker id="arr-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3" markerHeight="3" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#9B74CC"/>
+    </marker>
+  </defs>
+
+  <rect width="297" height="210" fill="#F7F8FA"/>
+
+  <!-- ===== TITLE ===== -->
+  <text x="148.5" y="10" font-size="5" font-weight="bold" fill="#1B2A4A" text-anchor="middle" font-family="sans-serif">Functional Correctness Scope</text>
+  <text x="148.5" y="15" font-size="2" fill="#8090A8" text-anchor="middle" font-family="sans-serif">~113,000 lines of Rust across 16 crates</text>
+
+  <!-- ===== SIGNAL ROW ===== -->
+  <text x="5" y="22" font-size="2.2" font-weight="bold" fill="#2B4C7E" font-family="sans-serif">libsignal</text>
+  <text x="35" y="22" font-size="1.5" fill="#8090A8" font-family="sans-serif">~22,400 lines</text>
+
+  <!-- libsignal-protocol -->
+  <rect x="3" y="26" width="44" height="24" rx="2" fill="#2B4C7E"/>
+  <text x="25" y="36" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
+  <text x="25" y="39.5" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protocol</text>
+  <text x="25" y="46" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~10,900</text>
+
+  <!-- spqr -->
+  <rect x="50" y="26" width="36" height="24" rx="2" fill="#3A5F8A"/>
+  <text x="68" y="39" font-size="2.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">spqr</text>
+  <text x="68" y="46" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~8,800</text>
+
+  <!-- libsignal-core -->
+  <rect x="89" y="26" width="30" height="24" rx="2" fill="#4A7396"/>
+  <text x="104" y="36" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
+  <text x="104" y="39.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">core</text>
+  <text x="104" y="46" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~1,800</text>
+
+  <!-- signal-crypto -->
+  <rect x="122" y="26" width="28" height="24" rx="2" fill="#5A87A6"/>
+  <text x="136" y="36" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-</text>
+  <text x="136" y="39.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">crypto</text>
+  <text x="136" y="46" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~880</text>
+
+  <!-- ===== CRYPTO PRIMITIVES ROW ===== -->
+  <text x="5" y="57" font-size="2.2" font-weight="bold" fill="#1E7A5A" font-family="sans-serif">RustCrypto / other</text>
+  <text x="60" y="57" font-size="1.5" fill="#8090A8" font-family="sans-serif">~12,100 lines</text>
+
+  <!-- aes-gcm-siv -->
+  <rect x="3" y="60" width="28" height="18" rx="1.5" fill="#1E7A5A"/>
+  <text x="17" y="70" font-size="1.7" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">aes-gcm-siv</text>
+  <text x="17" y="75" font-size="1.3" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~830</text>
+
+  <!-- aes -->
+  <rect x="34" y="60" width="26" height="18" rx="1.5" fill="#1E7A5A"/>
+  <text x="47" y="71" font-size="2.2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">aes</text>
+  <text x="47" y="75" font-size="1.3" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~6,650</text>
+
+  <!-- sha2 -->
+  <rect x="63" y="60" width="26" height="18" rx="1.5" fill="#1E7A5A"/>
+  <text x="76" y="71" font-size="2.2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">sha2</text>
+  <text x="76" y="75" font-size="1.3" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~2,400</text>
+
+  <!-- hpke-rs -->
+  <rect x="92" y="60" width="28" height="18" rx="1.5" fill="#2A7B7B"/>
+  <text x="106" y="71" font-size="2.2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">hpke-rs</text>
+  <text x="106" y="75" font-size="1.3" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~2,200</text>
+
+  <!-- x25519-dalek -->
+  <rect x="123" y="60" width="28" height="18" rx="1.5" fill="#7C5A2E"/>
+  <text x="137" y="67.5" font-size="1.7" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">x25519-</text>
+  <text x="137" y="71" font-size="1.7" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">dalek</text>
+  <text x="137" y="75" font-size="1.3" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~680</text>
+
+  <!-- ===== BOTTOM ROW ===== -->
+
+  <rect x="3" y="88" width="70" height="24" rx="2" fill="#6B3FA0"/>
+  <text x="38" y="99" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libcrux</text>
+  <text x="38" y="104" font-size="1.8" fill="white" opacity="0.7" text-anchor="middle" font-family="sans-serif">8 crates · ~44,600</text>
+  <text x="38" y="108" font-size="1.5" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">ml-kem, hmac, sha2/3, hacl-rs…</text>
+
+  <!-- ===== CURVE25519-DALEK ===== -->
+  <rect x="83" y="88" width="70" height="24" rx="2" fill="#7C5A2E"/>
+  <text x="118" y="101" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">curve25519-dalek</text>
+  <text x="118" y="108" font-size="1.5" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~33,000</text>
+
+  <!-- ===== DEPENDENCY ARROWS ===== -->
+
+  <!-- Signal → Crypto primitives (downward) -->
+  <line x1="17" y1="50" x2="17" y2="60" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- protocol → aes-gcm-siv -->
+  <line x1="68" y1="50" x2="76" y2="60" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- spqr → sha2 -->
+  <line x1="136" y1="50" x2="106" y2="60" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- signal-crypto → hpke-rs -->
+  <line x1="104" y1="50" x2="137" y2="60" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- core → x25519-dalek -->
+  <line x1="97" y1="50" x2="80" y2="60" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>  <!-- core → sha2 -->
+
+  <!-- Crypto → Crypto -->
+  <line x1="31" y1="69" x2="34" y2="69" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- aes-gcm-siv → aes -->
+
+  <!-- → curve25519-dalek -->
+  <line x1="58" y1="50" x2="118" y2="88" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- spqr → curve25519 -->
+  <line x1="137" y1="78" x2="118" y2="88" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>  <!-- x25519 → curve25519 -->
+
+  <!-- Signal → libcrux -->
+  <line x1="30" y1="50" x2="30" y2="88" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>  <!-- protocol → libcrux -->
+  <line x1="72" y1="50" x2="38" y2="88" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>  <!-- spqr → libcrux -->
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="3" y="125" width="8" height="4" rx="1" fill="#2B4C7E"/>
+  <text x="13" y="128.5" font-size="1.6" fill="#444" font-family="sans-serif">libsignal repos</text>
+  <rect x="3" y="131" width="8" height="4" rx="1" fill="#1E7A5A"/>
+  <text x="13" y="134.5" font-size="1.6" fill="#444" font-family="sans-serif">RustCrypto / other</text>
+  <rect x="3" y="137" width="8" height="4" rx="1" fill="#7C5A2E"/>
+  <text x="13" y="140.5" font-size="1.6" fill="#444" font-family="sans-serif">curve25519-dalek</text>
+  <rect x="3" y="143" width="8" height="4" rx="1" fill="#6B3FA0"/>
+  <text x="13" y="146.5" font-size="1.6" fill="#444" font-family="sans-serif">libcrux</text>
+
+</svg>
