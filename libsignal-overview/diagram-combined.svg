@@ -98,28 +98,28 @@
   <text x="5" y="82" font-size="2.2" font-weight="bold" fill="#2B4C7E" font-family="sans-serif">libsignal</text>
   <text x="48" y="82" font-size="1.5" fill="#8090A8" font-family="sans-serif">~22,400 lines</text>
 
-  <!-- libsignal-protocol -->
-  <rect x="5" y="86" width="59" height="24" rx="2" fill="#2B4C7E"/>
-  <text x="34" y="96" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
-  <text x="34" y="99.5" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protocol</text>
-  <text x="34" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~10,900</text>
-
   <!-- spqr -->
-  <rect x="68" y="86" width="48" height="24" rx="2" fill="#3A5F8A"/>
-  <text x="92" y="99" font-size="2.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">spqr</text>
-  <text x="92" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~8,800</text>
+  <rect x="5" y="86" width="48" height="24" rx="2" fill="#3A5F8A"/>
+  <text x="29" y="99" font-size="2.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">spqr</text>
+  <text x="29" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~8,800</text>
 
-  <!-- libsignal-core -->
-  <rect x="120" y="86" width="40" height="24" rx="2" fill="#4A7396"/>
-  <text x="140" y="96" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
-  <text x="140" y="99.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">core</text>
-  <text x="140" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~1,800</text>
+  <!-- libsignal-protocol -->
+  <rect x="57" y="86" width="59" height="24" rx="2" fill="#2B4C7E"/>
+  <text x="86.5" y="96" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
+  <text x="86.5" y="99.5" font-size="2" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">protocol</text>
+  <text x="86.5" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~10,900</text>
 
   <!-- signal-crypto -->
-  <rect x="164" y="86" width="41" height="24" rx="2" fill="#5A87A6"/>
-  <text x="184.5" y="96" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-</text>
-  <text x="184.5" y="99.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">crypto</text>
-  <text x="184.5" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~880</text>
+  <rect x="120" y="86" width="41" height="24" rx="2" fill="#5A87A6"/>
+  <text x="140.5" y="96" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">signal-</text>
+  <text x="140.5" y="99.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">crypto</text>
+  <text x="140.5" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~880</text>
+
+  <!-- libsignal-core -->
+  <rect x="165" y="86" width="40" height="24" rx="2" fill="#4A7396"/>
+  <text x="185" y="96" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">libsignal-</text>
+  <text x="185" y="99.5" font-size="1.8" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">core</text>
+  <text x="185" y="106" font-size="1.4" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~1,800</text>
 
   <!-- Crypto primitives row -->
   <text x="5" y="117" font-size="2.2" font-weight="bold" fill="#1E7A5A" font-family="sans-serif">RustCrypto / other</text>
@@ -161,24 +161,39 @@
   <text x="158" y="161" font-size="3" font-weight="bold" fill="white" text-anchor="middle" font-family="sans-serif">curve25519-dalek</text>
   <text x="158" y="168" font-size="1.5" fill="white" opacity="0.6" text-anchor="middle" font-family="sans-serif">~33,000</text>
 
-  <!-- ===== DEPENDENCY ARROWS (scaled ×4/3 horizontally) ===== -->
+  <!-- ===== DEPENDENCY ARROWS ===== -->
+
+  <!-- Signal intra-row dependencies (short gap arrows) -->
+  <!-- libsignal-protocol → spqr (leftward) -->
+  <line x1="57" y1="98" x2="53" y2="98" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>
+  <!-- libsignal-protocol → signal-crypto (rightward) -->
+  <line x1="116" y1="98" x2="120" y2="98" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>
+  <!-- signal-crypto → libsignal-core (rightward) -->
+  <line x1="161" y1="98" x2="165" y2="98" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>
 
   <!-- Signal → Crypto primitives -->
-  <line x1="24" y1="110" x2="24" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
-  <line x1="92" y1="110" x2="102" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
-  <line x1="182" y1="110" x2="142" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
-  <line x1="140" y1="110" x2="184" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
-  <line x1="130" y1="110" x2="108" y2="120" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>
+  <!-- libsignal-protocol → aes-gcm-siv -->
+  <line x1="86.5" y1="110" x2="24" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <!-- spqr → sha2 -->
+  <line x1="29" y1="110" x2="102" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <!-- signal-crypto → hpke-rs -->
+  <line x1="140.5" y1="110" x2="142" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <!-- signal-crypto → aes -->
+  <line x1="140.5" y1="110" x2="64" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <!-- libsignal-core → x25519-dalek -->
+  <line x1="185" y1="110" x2="185" y2="120" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <!-- libsignal-core → sha2 -->
+  <line x1="185" y1="110" x2="102" y2="120" stroke="#777" stroke-width="0.4" marker-end="url(#arr)"/>
 
   <!-- Crypto → Crypto -->
   <line x1="42" y1="129" x2="46" y2="129" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
 
   <!-- → curve25519-dalek -->
-  <line x1="78" y1="110" x2="158" y2="148" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
-  <line x1="184" y1="138" x2="158" y2="148" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <line x1="29" y1="110" x2="158" y2="148" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
+  <line x1="185" y1="138" x2="158" y2="148" stroke="#777" stroke-width="0.5" marker-end="url(#arr)"/>
 
-  <!-- Signal → libcrux -->
-  <line x1="41" y1="110" x2="41" y2="148" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>
-  <line x1="97" y1="110" x2="52" y2="148" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>
+  <!-- → libcrux -->
+  <line x1="29" y1="110" x2="52" y2="148" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>
+  <line x1="142" y1="138" x2="52" y2="148" stroke="#9B74CC" stroke-width="0.5" opacity="0.7" marker-end="url(#arr-p)"/>
 
 </svg>
