@@ -1,0 +1,14 @@
+{
+  "name": "torino-2026-rust-verification",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.11.3",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "^0.25.0"
+  }
+}
