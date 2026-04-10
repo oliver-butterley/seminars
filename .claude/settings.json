@@ -27,7 +27,14 @@
       "Bash(find curve25519-dalek/src/backend/serial/u64 -name '*.rs' -exec wc -l {} +)",
       "Bash(find curve25519-dalek/src/backend/serial -name '*.rs' -exec wc -l {} +)",
       "Bash(gh pr:*)",
-      "Bash(ln -s ../images /home/oliver/Projects/Verify/verification-seminar/torino-2026/images)"
+      "Bash(ln -s ../images /home/oliver/Projects/Verify/verification-seminar/torino-2026/images)",
+      "Read(//home/oliver/Projects/Verify/**)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:upload.wikimedia.org)",
+      "WebFetch(domain:rust-lang.org)",
+      "WebFetch(domain:lean-lang.org)"
     ]
   }
 }

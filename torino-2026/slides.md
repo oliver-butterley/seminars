@@ -83,12 +83,10 @@ What follows is our **real-world experience** of verifying the functional correc
 
 <div class="mt-6">
 
-1. The target crate — curve25519-dalek
-2. The extraction pipeline — Rust to Lean via Charon and Aeneas
-3. What proofs in Lean look like
-4. **Extraction issues** — what breaks when you try to extract real Rust
-5. **Proof engineering** — what breaks when you try to prove at scale
-6. Upstreaming — contributing back to the ecosystem
+1. **Background:** verification target, toolchain, Lean proofs
+2. **Extraction issues:** what breaks when you try to extract real Rust
+3. **Proof engineering:** what breaks when you try to prove at scale
+4. **Contributions** to open-source verification infrastructure
 
 </div>
 
@@ -104,19 +102,19 @@ The aim of this talk is to share real-world experience. Not the theory of how th
 
 ---
 
-## The task — curve25519-dalek
+## The task: curve25519-dalek
 
 <div class="grid grid-cols-2 gap-6 mt-2">
 <div>
 
-- Pure-Rust crate for **fast elliptic curve cryptography**
-- ~33k LOC total, we target the **serial/u64 backend** (~9k lines)
+- Pure Rust library for **elliptic curve primitives**, focussing on speed
+- ~33k LOC
+- Multiple backends, we focus on the **serial/u64 backend**
 - Low control-flow complexity, **high data-complexity**
-- Bit-level manipulations on 5×u64 limb representations
+- E.g., Bit-level manipulations on 5×u64 limb representations
+- E.g., constructors and operations that guarantee that curve points stay as curve points
 
 <div class="mt-4 text-sm opacity-70">
-
-Numbers are represented in radix 2^51 using five 64-bit limbs, with "headroom" for lazy reduction.
 
 </div>
 
@@ -156,49 +154,36 @@ Jure already introduced curve25519-dalek in his talk, so I'll just highlight the
 
 ## Extraction: Rust to Lean
 
-<div class="grid grid-cols-[1fr_1fr] gap-6 mt-2">
-<div>
+<img src="/pipeline.svg" class="h-44 mx-auto mt-4" />
 
-**Pipeline:**
+<div class="mt-4 text-sm">
 
-Rust source → **Charon** (MIR extraction) → **Aeneas** (Lean generation) → Lean proofs
+**The Lean model** faithfully captures Rust semantics:
+- `Result` monad — every operation can succeed (`ok`), fail (`fail`), or diverge (`div`)
+- Imperative code via `do`-notation with monadic bind
+- Every arithmetic operation is fallible (overflow checking)
+- `Funs.lean` — 8,176 lines of extracted function definitions; `Types.lean` — type definitions
 
-**Key output:**
-- `Funs.lean` — 8,176 lines of extracted Lean code
-- `Types.lean` — type definitions
-- 192 spec theorem files in `Specs/`
-
-**Rust semantics in Lean:**
-- `Result` monad: `ok`, `fail`, `div`
-- Imperative code via do-notation with monadic bind
-- Every arithmetic operation can fail (overflow)
-
-</div>
-<div>
-
-```lean
--- Extracted by Aeneas from reduce()
-def FieldElement51.reduce
-  (limbs : Array U64 5#usize) :
-  Result FieldElement51
-:= do
-  let i ← Array.index_usize limbs 0#usize
-  let c0 ← i >>> 51#i32
-  let i1 ← Array.index_usize limbs 1#usize
-  let c1 ← i1 >>> 51#i32
-  -- ...
-  let i14 ← c4 * 19#u64
-  let i15 ← Array.index_usize limbs5 0#usize
-  let i16 ← i15 + i14
-  -- ...
-  ok limbs10
-```
-
-</div>
 </div>
 
 <!--
-The pipeline was covered earlier today so I'll move through this quickly, but I want the details to be clear. Rust source goes through Charon, which extracts from MIR, then Aeneas generates Lean code. On the right you can see what the extracted Lean looks like — it's a faithful model of the Rust, every operation wrapped in the Result monad because any arithmetic could overflow. The `do` notation makes it read almost like the original Rust. We end up with over 8,000 lines of extracted Lean and 192 separate spec theorem files.
+The extraction pipeline was covered earlier today so I'll move through this quickly. Rust source goes through Charon, which extracts from MIR and produces a single dense LLBC file — a JSON representation of the program with no whitespace. Then Aeneas reads this and generates Lean code: Funs.lean with over 8,000 lines of extracted function definitions, and Types.lean with the type definitions. The Lean model faithfully captures Rust semantics — every arithmetic operation is wrapped in a Result monad because it could overflow, and imperative code is expressed using do-notation with monadic bind.
+In Dante's Divine Comedy, Charon forces reluctant sinners onto his boat by beating them with his oar.
+Charon also ferried the living mortals Aeneas to the underworld and back again. 
+-->
+
+---
+
+<img src="/images/Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_10_(Canto_III_-_Charon_herds_the_sinners_onto_his_boat).jpg" class="h-100 mx-auto" />
+
+<div class="text-center text-sm opacity-70 mt-1">
+
+In Dante's Divine Comedy, Charon forces reluctant sinners onto his boat by beating them with his oar.
+
+</div>
+
+<!--
+Since we are in Italy, we have to mention Dante. Here is Gustave Doré's famous illustration of Charon from the Inferno — herding reluctant sinners onto his boat, beating them with his oar. And of course Charon also ferried the living hero Aeneas to the underworld and back — so our two tools are connected by mythology as well as by our pipeline.
 -->
 
 ---
