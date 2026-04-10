@@ -15,26 +15,19 @@ layout: cover
 
 <h1 class="text-4xl">Verifying curve25519-dalek using Lean</h1>
 
-**Oliver Butterley**
+**Oliver Butterley, Markus Dablander, Alessandro D'Angelo, Hoang Le Truong, Liao Zhang**
 
-<div class="opacity-80">
 
-The Beneficial AI Foundation & University of Rome Tor Vergata
 
-</div>
-
-<div class="mt-4 flex justify-center gap-8 items-center">
+<div class="mt-4 flex justify-center items-center">
   <div class="bg-gray-800 px-3 py-2 rounded">
     <img src="/images/BAIF_Logo.png" class="h-12" />
-  </div>
-  <div class="border-2 border-gray-300 px-3 py-2 rounded">
-    <img src="/images/Tor_Vergata_Logo.png" class="h-12" />
   </div>
 </div>
 
 <div class="abs-bottom mb-8 opacity-50">
 
-Torino Rust Verification Workshop, 14 April 2026
+Rust Verification Workshop, Turin 14 April 2026
 
 </div>
 
@@ -44,36 +37,38 @@ Good afternoon everyone. I'm Oliver Butterley and I'm going to talk about our ex
 
 ---
 
-## The Beneficial AI Foundation & Team
+## The Beneficial AI Foundation
 
-<div class="grid grid-cols-2 gap-8 mt-4">
-<div>
+One core mission: making formal verification easier, cheaper and ubiquitous.
 
-The Beneficial AI Foundation works to ensure AI development benefits humanity. One key effort: formal verification of critical open-source infrastructure — proving that the code the world depends on actually does what it claims.
+## Lean-Dalek Team
 
-</div>
-<div class="flex flex-col gap-3">
-  <div class="flex items-center gap-3">
-    <img src="https://github.com/oliver-butterley.png" class="w-10 h-10 rounded-full" />
-    <span><strong>Oliver Butterley</strong></span>
+<div class="flex gap-6 mt-4 justify-center">
+  <div class="flex flex-col items-center gap-1">
+    <img src="https://github.com/oliver-butterley.png" class="w-14 h-14 rounded-full" />
+    <span class="text-sm"><strong>Oliver Butterley</strong></span>
+    <span class="text-xs opacity-40">@oliver-butterley</span>
   </div>
-  <div class="flex items-center gap-3">
-    <img src="https://github.com/MarkusFerdinandDablander.png" class="w-10 h-10 rounded-full" />
-    <span><strong>Markus Dablander</strong></span>
+  <div class="flex flex-col items-center gap-1">
+    <img src="https://github.com/MarkusFerdinandDablander.png" class="w-14 h-14 rounded-full" />
+    <span class="text-sm"><strong>Markus Dablander</strong></span>
+    <span class="text-xs opacity-40">@MarkusFerdinandDablander</span>
   </div>
-  <div class="flex items-center gap-3">
-    <img src="https://github.com/a-dangelo.png" class="w-10 h-10 rounded-full" />
-    <span><strong>Alessandro D'Angelo</strong></span>
+  <div class="flex flex-col items-center gap-1">
+    <img src="https://github.com/a-dangelo.png" class="w-14 h-14 rounded-full" />
+    <span class="text-sm"><strong>Alessandro D'Angelo</strong></span>
+    <span class="text-xs opacity-40">@a-dangelo</span>
   </div>
-  <div class="flex items-center gap-3">
-    <img src="https://github.com/truonghoangle.png" class="w-10 h-10 rounded-full" />
-    <span><strong>Hoang Le Truong</strong></span>
+  <div class="flex flex-col items-center gap-1">
+    <img src="https://github.com/truonghoangle.png" class="w-14 h-14 rounded-full" />
+    <span class="text-sm"><strong>Hoang Le Truong</strong></span>
+    <span class="text-xs opacity-40">@truonghoangle</span>
   </div>
-  <div class="flex items-center gap-3">
-    <img src="https://github.com/zhangliao714.png" class="w-10 h-10 rounded-full" />
-    <span><strong>Liao Zhang</strong></span>
+  <div class="flex flex-col items-center gap-1">
+    <img src="https://www.gravatar.com/avatar/zhangliao714?d=identicon&f=y&s=112" class="w-14 h-14 rounded-full" />
+    <span class="text-sm"><strong>Liao Zhang</strong></span>
+    <span class="text-xs opacity-40">@zhangliao714</span>
   </div>
-</div>
 </div>
 
 <!--
@@ -84,11 +79,9 @@ Jure already introduced the Beneficial AI Foundation so I'll be brief. The found
 
 ## Overview
 
-What follows is **real-world experience** verifying production Rust cryptography code end-to-end.
+What follows is our **real-world experience** of verifying the functional correctness of production Rust cryptography code in Lean.
 
 <div class="mt-6">
-
-**Topics:**
 
 1. The target crate — curve25519-dalek
 2. The extraction pipeline — Rust to Lean via Charon and Aeneas
@@ -101,7 +94,7 @@ What follows is **real-world experience** verifying production Rust cryptography
 
 <div class="mt-4 text-sm opacity-70">
 
-Repo: https://github.com/Beneficial-AI-Foundation/curve25519-dalek-lean-verify
+Project repo: https://github.com/Beneficial-AI-Foundation/curve25519-dalek-lean-verify
 
 </div>
 
