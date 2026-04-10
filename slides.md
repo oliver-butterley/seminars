@@ -98,9 +98,8 @@ We choose Rust verified in Lean via Aeneas because it is the most relevant combi
 ### Example function: `reduce`
 
 ```rust
-pub struct FieldElement51(pub(crate) [u64; 5]);
-/// Given 64-bit input limbs, reduce to enforce the bound 2^(51 + epsilon).
-fn reduce(mut limbs: [u64; 5]) -> FieldElement51 {
+/// Reduce mod p to enforce the bound 2^52.
+fn reduce(mut limbs: [u64; 5]) -> [u64; 5] {
     const LOW_51_BIT_MASK: u64 = (1u64 << 51) - 1;
 
     let c0 = limbs[0] >> 51;
@@ -121,7 +120,7 @@ fn reduce(mut limbs: [u64; 5]) -> FieldElement51 {
     limbs[3] += c2;
     limbs[4] += c3;
 
-    FieldElement51(limbs)
+    limbs
 }
 ```
 
@@ -321,27 +320,23 @@ theorem U64.add_spec {x y : U64} (hmax : x.val + y.val ≤ U64.max) :
 ### Example function: `reduce`
 
 ```lean
-/-- **Spec and proof concerning `FieldElement51.reduce`**:
-- Does not overflow
-- All limbs of result are small, ≤ 2^(51 + ε)
-- Result equals input mod p -/
-@[progress]
 theorem reduce_spec (limbs : Array U64 5#usize) :
-    ∃ result, reduce limbs = ok result ∧
-    (∀ i < 5, result[i]!.val ≤ 2^51 + (2^13 - 1) * 19) ∧
-    Field51_as_Nat limbs ≡ Field51_as_Nat result [MOD p] := by
+    reduce limbs ⦃ (result : FieldElement51) =>
+      (∀ i < 5, result[i]!.val < 2 ^ 52) ∧
+      Field51_as_Nat limbs ≡ Field51_as_Nat result [MOD p] ⦄ := by
   unfold reduce
-  progress*
+  step*
   · simp [*]; scalar_tac        -- ⊢ ↑i15 + ↑i14 ≤ U64.max
   · simp [*]; scalar_tac
   · simp [*]; scalar_tac
   · simp [*]; scalar_tac
   · simp [*]; scalar_tac
   · constructor
-    · intro i _                 -- ∀ i < 5, ↑limbs10[i]! ≤ 2 ^ 51 + (2 ^ 13 - 1) * 19
+    · intro i _                 -- ∀ i < 5, ≤ 2 ^ 52
       interval_cases i
       all_goals simp [*]; scalar_tac
-    · simp [Field51_as_Nat, Finset.sum_range_succ, p, Nat.ModEq, *]; omega
+    · simp [Field51_as_Nat, Finset.sum_range_succ, p, Nat.ModEq, *]
+      omega
 ```
 
 ---
@@ -353,10 +348,11 @@ theorem reduce_spec (limbs : Array U64 5#usize) :
 - Result r_inv is additive inverse of input r in 𝔽_p
 - All limbs of result are small, ≤ 2^(51 + ε) -/
 @[progress]
-theorem negate_spec (r : FieldElement51) (h : ∀ i < 5, r[i]!.val < 2 ^ 54) :
-    ∃ r_inv, negate r = ok r_inv ∧
-    (Field51_as_Nat r + Field51_as_Nat r_inv) % p = 0 ∧
-    (∀ i < 5, r_inv[i]!.val ≤ 2^51 + (2^13 - 1) * 19) := by
+theorem reduce_spec (limbs : Array U64 5#usize) :
+    reduce limbs ⦃ (result : FieldElement51) =>
+      (∀ i < 5, result[i]!.val < 2 ^ 52) ∧
+      Field51_as_Nat limbs ≡ Field51_as_Nat result [MOD p] ∧
+      Field51_as_Nat result < 2 * p ⦄ := by
   unfold negate
   progress*
   · simp_all; grind
