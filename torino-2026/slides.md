@@ -160,9 +160,9 @@ Jure already introduced curve25519-dalek in his talk, so I'll just highlight the
 
 **The Lean model** faithfully captures Rust semantics:
 - `Result` monad — every operation can succeed (`ok`), fail (`fail`), or diverge (`div`)
+- Arithmetic operations are fallible (overflow checking), etc.
 - Imperative code via `do`-notation with monadic bind
-- Every arithmetic operation is fallible (overflow checking)
-- `Funs.lean` — 8,176 lines of extracted function definitions; `Types.lean` — type definitions
+- `Funs.lean`: in our project 8,176 lines of extracted function definitions
 
 </div>
 
@@ -224,35 +224,12 @@ This is what a proof actually looks like. At the top, the spec theorem states wh
 
 ## Project status
 
-<div class="grid grid-cols-[1fr_1fr] gap-6 mt-4">
-<div>
+**192 functions** in total
 
-**192 functions** tracked
-
-| Status | Count |
-|--------|-------|
-| Verified | 161 (84%) |
-| Externally verified | 5 (3%) |
-| Extracted, not yet verified | 20 (10%) |
-| Not extracted | 7 (4%) |
-
-<div class="mt-3 text-sm">
-
-**Externally verified**: proofs checked on paper or in another system, marked with `@[externally_verified]` attribute.
-
-**Not extracted**: functions using patterns Aeneas cannot handle (see next slides).
-
-</div>
-</div>
-<div>
-
-<img src="/images/progress.png" class="h-72 mx-auto" />
-
-</div>
-</div>
+<img src="/images/progress_2026-04-10.png" class="h-80 mx-auto mt-4" />
 
 <!--
-Here's where we stand. 192 functions in scope. 161 fully verified — that's 84 percent. Five more are externally verified, meaning the proofs exist on paper or in another system and we've marked them with a special attribute. 20 are extracted but not yet proven. And 7 couldn't be extracted at all, which brings us to the extraction issues.
+Here's where we stand. 192 functions in scope. You can see the progress over time — the green area is verified functions, steadily climbing. We're now approaching full coverage.
 -->
 
 ---
@@ -483,10 +460,12 @@ class: text-center
 
 ## Thank you
 
-<div class="mt-8">
+
+<img src="/images/dalek-logo-clear.png" class="h-28 mx-auto mt-6 opacity-60" />
+
+
+<div class="mt-6">
 
 **Repo:** https://github.com/Beneficial-AI-Foundation/curve25519-dalek-lean-verify
-
-**Project site:** https://beneficial-ai-foundation.github.io/curve25519-dalek-lean-verify/
 
 </div>

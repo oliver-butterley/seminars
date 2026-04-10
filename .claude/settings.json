@@ -34,7 +34,9 @@
       "WebFetch(domain:commons.wikimedia.org)",
       "WebFetch(domain:upload.wikimedia.org)",
       "WebFetch(domain:rust-lang.org)",
-      "WebFetch(domain:lean-lang.org)"
+      "WebFetch(domain:lean-lang.org)",
+      "Bash(ls /home/oliver/Projects/Verify/verification-seminar/images/*dalek*)",
+      "Bash(ls /home/oliver/Projects/Verify/curve25519-dalek-lean-verify/docs/assets/*dalek*)"
     ]
   }
 }
