@@ -39,33 +39,34 @@ Good afternoon everyone. I'm Oliver Butterley and I'm going to talk about our ex
 
 ## The Beneficial AI Foundation
 
-One core mission: making formal verification easier, cheaper and ubiquitous.
+One core mission: making formal verification easier, cheaper and ubiquitous. 
+TODO: is this reasonable?
 
 ## Lean-Dalek Team
 
 <div class="flex gap-6 mt-4 justify-center">
   <div class="flex flex-col items-center gap-1">
-    <img src="https://github.com/oliver-butterley.png" class="w-14 h-14 rounded-full" />
+    <img src="/images/oliver-butterley.png" class="w-14 h-14 rounded-full" />
     <span class="text-sm"><strong>Oliver Butterley</strong></span>
     <span class="text-xs opacity-40">@oliver-butterley</span>
   </div>
   <div class="flex flex-col items-center gap-1">
-    <img src="https://github.com/MarkusFerdinandDablander.png" class="w-14 h-14 rounded-full" />
+    <img src="/images/MarkusFerdinandDablander.png" class="w-14 h-14 rounded-full" />
     <span class="text-sm"><strong>Markus Dablander</strong></span>
     <span class="text-xs opacity-40">@MarkusFerdinandDablander</span>
   </div>
   <div class="flex flex-col items-center gap-1">
-    <img src="https://github.com/a-dangelo.png" class="w-14 h-14 rounded-full" />
+    <img src="/images/a-dangelo.png" class="w-14 h-14 rounded-full" />
     <span class="text-sm"><strong>Alessandro D'Angelo</strong></span>
     <span class="text-xs opacity-40">@a-dangelo</span>
   </div>
   <div class="flex flex-col items-center gap-1">
-    <img src="https://github.com/truonghoangle.png" class="w-14 h-14 rounded-full" />
+    <img src="/images/truonghoangle.png" class="w-14 h-14 rounded-full" />
     <span class="text-sm"><strong>Hoang Le Truong</strong></span>
     <span class="text-xs opacity-40">@truonghoangle</span>
   </div>
   <div class="flex flex-col items-center gap-1">
-    <img src="https://www.gravatar.com/avatar/zhangliao714?d=identicon&f=y&s=112" class="w-14 h-14 rounded-full" />
+    <img src="/images/9824405.png" class="w-14 h-14 rounded-full" />
     <span class="text-sm"><strong>Liao Zhang</strong></span>
     <span class="text-xs opacity-40">@zhangliao714</span>
   </div>
@@ -173,6 +174,8 @@ Charon also ferried the living mortals Aeneas to the underworld and back again.
 -->
 
 ---
+hide: true
+---
 
 <img src="/images/Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_10_(Canto_III_-_Charon_herds_the_sinners_onto_his_boat).jpg" class="h-100 mx-auto" />
 
@@ -222,9 +225,12 @@ This is what a proof actually looks like. At the top, the spec theorem states wh
 
 ---
 
-## Project status
+## Project summary
 
-**192 functions** in total
+<div class="mt-2">
+
+- **192 functions** in total
+- Can effectively verify functional correctness in Lean
 
 <img src="/images/progress_2026-04-10.png" class="h-80 mx-auto mt-4" />
 
@@ -238,6 +244,14 @@ Here's where we stand. 192 functions in scope. You can see the progress over tim
 
 <div class="mt-2">
 
+### Initially some Rust wasn't supported by Charon/Aeneas
+
+- Some modifications to the source code (later reverted)
+- Some tweaks to the output Lean code (later reverted)
+- Some functions excluded from extraction
+- CI for Aeneas from the beginning with tweaks applied after extraction
+
+<!-- 
 ### Patterns Aeneas cannot extract
 
 **Dynamic array indexing** — `output[i] = value` where `i` is computed at runtime:
@@ -274,7 +288,7 @@ while i < 5 {
 }
 ```
 
-</div>
+</div> -->
 </div>
 
 <!--
@@ -284,7 +298,7 @@ Let me walk through the extraction issues — the gap between idiomatic Rust and
 ---
 
 ## Extraction issues (2/2)
-
+<!-- 
 **ConditionallyNegatable** — trait not extractable, must be decomposed:
 
 ```rust
@@ -316,7 +330,7 @@ while i >= 0 {
 
 Total: 879-line diff on a 9,700-line codebase (~9% modified). Only variable-time optimised paths are excluded — all core arithmetic, point operations, and compression/decompression are verified.
 
-</div>
+</div> -->
 
 <!--
 More extraction issues. The ConditionallyNegatable trait from the subtle crate can't be extracted — we decompose it into conditional_assign plus an explicit negation. We gate excluded code with cfg not verify, set via Cargo config.
@@ -330,6 +344,10 @@ In total, the diff is 879 lines on a 9,700-line codebase — about 9 percent. Bu
 
 ## Proof issues (1/2)
 
+- Heartbeat (in Lean) escalation
+- Large number literals
+
+<!-- 
 ### Heartbeat escalation
 
 - Lean's default: **200,000** heartbeats
@@ -346,7 +364,7 @@ theorem mul_spec ...
 - Curve constants are 78-digit numbers (e.g. `sqrt(-1)` in the field)
 - Kernel elaboration consumes **20+ GB RAM** trying to normalise these
 - `ring` and `decide` time out
-- The remaining `sorry` in `Math/` are all of this character (5 total)
+- The remaining `sorry` in `Math/` are all of this character (5 total) -->
 
 <!--
 Now let's talk about what happens once extraction works and you're actually in Lean trying to prove things. The first problem is heartbeats. Lean has a default computation budget of 200,000 heartbeats. Our proofs need up to 14 million — that's 70 times the default. The reason is that `step*` unfolds the extracted code step by step, and each step can leave large intermediate terms that `simp` has to process.
@@ -357,7 +375,7 @@ The second problem is large number literals. The curve constants — like the sq
 ---
 
 ## Proof issues (2/2)
-
+<!-- 
 ### Bridge lemma pattern
 
 Factor expensive ring normalisations into reusable intermediate lemmas:
@@ -383,7 +401,7 @@ have h_mod : Hold (...expensive...) := h_original
 clear h_original
 step as ⟨result, h_post⟩    -- simp doesn't touch Hold hypotheses
 change ...expensive... at h_mod  -- recover via definitional equality
-```
+``` -->
 
 <!--
 Here are two engineering techniques we developed. First, bridge lemmas. When you have a large polynomial expression — say a schoolbook multiplication expanded over five limbs — the ring tactic times out trying to normalise it directly. So we factor the normalisation into small reusable bridge lemmas: bridge_mul, bridge_sq, bridge_sub, bridge_neg, and so on. Each one is cheap to prove, and together they let us build up the full proof without any single expensive step.
@@ -393,12 +411,40 @@ Second, the Hold wrapper. The step tactic runs simp on all hypotheses in the con
 
 ---
 
+## Trust model
+
+To trust that curve25519-dalek satisfies the proven specifications:
+
+1. **The Lean proof checker** — Lean's minimal trusted kernel guarantees correctness
+2. **The Aeneas translation** — extracted Lean code faithfully represents the Rust source
+3. **The specifications** — written in Lean, readable by humans, drillable via interactive features
+4. **External function specs** — dependencies modelled manually in `FunsExternal.lean`
+
+<div class="mt-4 text-sm">
+
+**CI enforces trust continuously:**
+- Aeneas extraction freshness — confirms `Funs.lean` / `Types.lean` match the Rust source
+- Source modification tracking — `src-modifications.diff` checked against actual changes
+- Full Lean build on every PR
+
+</div>
+
+<!--
+Let me briefly touch on the trust model. What do you actually need to trust for these proofs to mean something? First, Lean's kernel — that's a small, well-audited proof checker. Second, the Aeneas translation — that the extracted Lean faithfully represents the Rust. Third, our specifications — are they stating the right thing? They're written in Lean so you can inspect them interactively. And fourth, external function specs for dependencies we model by hand. Our CI enforces all of this continuously: it re-runs extraction and checks the output matches, it tracks every source modification, and it builds all proofs on every PR.
+-->
+
+---
+
 ## Upstreaming
 
 <div class="mt-4">
 
-**Culture of contributing back to the tools we depend on.**
+**Lean culture where the line between tool creators and tool users is very blurred.**
 
+- We have been and now will more contribute to the upstream projects (Charon/Aeneas/Mathlib)
+
+
+<!-- 
 **Contributions to Aeneas** (6 PRs merged):
 - Docstring generation, Rust visibility in Lean output, `-version` flag
 - Replace custom `List.slice` with upstream `List.extract`
@@ -412,7 +458,7 @@ Second, the Hold wrapper. The step tactic runs simp on all hypotheses in the con
 
 **Next:**
 - Upstream Lean models of Rust core types and operations
-- Continue isolating and reporting extraction edge cases to support the Aeneas/Charon developers
+- Continue isolating and reporting extraction edge cases to support the Aeneas/Charon developers -->
 
 </div>
 
@@ -424,31 +470,41 @@ Going forward, we're planning to upstream our Lean models of Rust core types and
 
 ---
 
-## Conclusions
+## AI use
 
-<div class="mt-4">
+- **Humans write the specs** — the creative, domain-specific work
+- **AI assists humans write proofs** — or writes entire proofs autonomously
 
-**The Charon/Aeneas/Lean toolchain works for production cryptographic Rust.**
+<div class="mt-4 text-sm">
 
-- 84% of functions fully verified, 87% including external verification
-- Core arithmetic, point operations, compression/decompression — all proven correct
-
-**Key lessons for Rust verification practitioners:**
-
-- Plan for **iterator elimination** and **loop rewriting** from the start
-- Trait boundaries (ConditionallyNegatable, Iterator) are the extraction frontier
-- Proof performance requires **engineering** — bridge lemmas, Hold wrapper, heartbeat tuning
-- `#[cfg(not(verify))]` is a practical, incremental gating strategy
-
-**What's next:**
-- Complete remaining 20 function proofs
-- Resolve the 5 large-number `sorry` in mathematical foundations
-- Explore verification of additional crates in the libsignal dependency tree
+The proof checker guarantees correctness regardless of who (or what) wrote the proof. AI-generated proofs are checked by Lean's kernel with the same rigour as human-written ones.
 
 </div>
 
 <!--
-To wrap up. The toolchain works. We've verified 84 percent of curve25519-dalek's functions — all the core arithmetic, point operations, compression and decompression. The key lessons: plan for iterator elimination from the start. Know that trait boundaries are the extraction frontier. And proof performance at this scale requires real engineering — bridge lemmas, the Hold wrapper, careful heartbeat tuning. These aren't theoretical concerns, they're daily realities.
+A key point about how AI fits into this workflow. Humans write the specifications — that's the creative, domain-specific work where you need to understand what the code is supposed to do. But the proofs? AI can assist with those, or in many cases write them entirely. And the beautiful thing is: it doesn't matter who wrote the proof. Lean's kernel checks it with exactly the same rigour. An AI-generated proof is just as trustworthy as a human-written one, because the proof checker doesn't care about the author — only about logical validity.
+-->
+
+---
+
+## Conclusions
+
+<div class="mt-4">
+
+**The Charon/Aeneas/Lean toolchain works for verifying production cryptographic Rust.**
+
+The real question is:
+
+**How can we make it very easy for anyone to verify Rust code like this.**
+
+</div>
+
+<!--
+To wrap up. The toolchain works. We've verified 84 percent of curve25519-dalek's functions — all the core arithmetic, point operations, compression and decompression. The key lessons: plan for iterator elimination from the start. Know that trait boundaries are the extraction frontier. 
+And proof performance at this scale requires real engineering — bridge lemmas, the Hold wrapper, careful heartbeat tuning. These aren't theoretical concerns, they're daily realities.
+
+I'm convinced that if I am given a Rust function that is supported by Charon/Aeneas and told why it satisfies the give spec then I can produce a proof for this is a short amount of time. Can be a challenge! 
+We want to make it so this is as automatic as possible.
 
 What's next: completing the remaining 20 proofs, resolving those 5 sorry statements where Lean's kernel can't handle 78-digit numbers, and moving on to additional crates in the libsignal dependency tree. Thank you.
 -->

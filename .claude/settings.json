@@ -36,7 +36,19 @@
       "WebFetch(domain:rust-lang.org)",
       "WebFetch(domain:lean-lang.org)",
       "Bash(ls /home/oliver/Projects/Verify/verification-seminar/images/*dalek*)",
-      "Bash(ls /home/oliver/Projects/Verify/curve25519-dalek-lean-verify/docs/assets/*dalek*)"
+      "Bash(ls /home/oliver/Projects/Verify/curve25519-dalek-lean-verify/docs/assets/*dalek*)",
+      "Bash(ls -la /home/oliver/Projects/Verify/verification-seminar/images/charon_aeneas*)",
+      "Bash(convert charon_aeneas.png -crop 768x1024+0+0 +repage -trim +repage charon.png)",
+      "Bash(convert charon_aeneas.png -crop 768x1024+768+0 +repage -trim +repage aeneas.png)",
+      "Bash(identify charon.png aeneas.png)",
+      "Bash(convert charon_aeneas.png -crop 768x1024+0+0 +repage -fuzz 20% -trim +repage charon.png)",
+      "Bash(convert charon_aeneas.png -crop 768x1024+768+0 +repage -fuzz 20% -trim +repage aeneas.png)",
+      "Bash(convert charon.png -flop charon.png)",
+      "Bash(convert aeneas.png -flop aeneas.png)",
+      "Bash(curl -sL -o oliver-butterley.png \"https://github.com/oliver-butterley.png\")",
+      "Bash(curl -sL -o MarkusFerdinandDablander.png \"https://github.com/MarkusFerdinandDablander.png\")",
+      "Bash(curl -sL -o a-dangelo.png \"https://github.com/a-dangelo.png\")",
+      "Bash(curl -sL -o truonghoangle.png \"https://github.com/truonghoangle.png\")"
     ]
   }
 }
