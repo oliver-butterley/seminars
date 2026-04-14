@@ -260,11 +260,8 @@ theorem add_spec
 <div class="mt-4 text-sm">
 
 - Addition in extended twisted Edwards coordinates $P_i = (X_i, Y_i, Z_i,T_i)$.
-- If inputs `IsValid` then the output `IsValid` (`InBounds` and `OnCurve`).
-- Function satisfies the curve addition formula:
-
-
-Function computes $P_3 = P_1 + P_2$ where
+- If inputs `IsValid` then the output `IsValid` (`InBounds` and `OnCurve`<sup>†</sup>).
+- Function computes $P_3 = P_1 + P_2$ where
 
 $$A = (Y_1-X_1)(Y_2-X_2),\quad B = (Y_1+X_1)(Y_2+X_2),\quad C = 2d\,T_1T_2,\quad D = 2Z_1Z_2$$
 
@@ -272,7 +269,11 @@ $$E = B-A,\quad F = D-C,\quad G = D+C,\quad H = B+A$$
 
 $$X_3 = EF,\quad Y_3 = GH,\quad T_3 = EH,\quad Z_3 = FG$$
 
-$(X,Y,Z,T)$ satisfies $-X^2+Y^2 = Z^2 + dT^2$ and $XY = ZT$.
+<div class="text-xs opacity-60 mt-2">
+
+<sup>†</sup> $-X^2+Y^2 = Z^2 + dT^2$ and $XY = ZT$.
+
+</div>
 
 </div>
 
@@ -284,16 +285,16 @@ Tidy way to track invariant through the codebase. Useful for next steps using th
 
 ---
 
-## Extraction issues (1/2)
+## Extraction issues
 
 <div class="mt-2">
 
-### Initially some Rust wasn't supported by Charon/Aeneas
-
+- Initially some Rust wasn't supported by Charon/Aeneas (e.g., iterators)
 - Some modifications to the source code (later reverted)
 - Some tweaks to the output Lean code (later reverted)
 - Some functions excluded from extraction
 - CI for Aeneas from the beginning with tweaks applied after extraction
+<!-- - Very few remaining (e.g., `self.mul_bits_be(scalar.bits_le().rev().skip(1))`) -->
 
 <!-- 
 ### Patterns Aeneas cannot extract
@@ -341,77 +342,29 @@ Let me walk through the extraction issues — the gap between idiomatic Rust and
 
 ---
 
-## Extraction issues (2/2)
-<!-- 
-**ConditionallyNegatable** — trait not extractable, must be decomposed:
-
-```rust
-// Before: x.conditional_negate(choice);
-// After:
-let x_neg = -&x;
-x.conditional_assign(&x_neg, choice);
-```
-
-**`#[cfg(not(verify))]` gating** — exclude what can't be extracted, keep what can.
-
-### Case study: Montgomery scalar multiplication
-
-```rust
-// Original: chains three iterator adapters
-self.mul_bits_be(scalar.bits_le().rev().skip(1))
-// Rewritten: inline Montgomery ladder with direct byte/bit indexing
-let mut i: isize = 254;
-while i >= 0 {
-    let byte_idx = (i >> 3) as usize;
-    let bit_idx = (i & 7) as usize;
-    let cur_bit = ((scalar_bytes[byte_idx] >> bit_idx) & 1u8) == 1u8;
-    // ... Montgomery ladder step ...
-    i -= 1;
-}
-```
-
-<div class="text-sm mt-2 opacity-70">
-
-Total: 879-line diff on a 9,700-line codebase (~9% modified). Only variable-time optimised paths are excluded — all core arithmetic, point operations, and compression/decompression are verified.
-
-</div> -->
-
-<!--
-More extraction issues. The ConditionallyNegatable trait from the subtle crate can't be extracted — we decompose it into conditional_assign plus an explicit negation. We gate excluded code with cfg not verify, set via Cargo config.
-
-The most interesting case study is Montgomery scalar multiplication. The original code chains three iterator adapters: bits_le, rev, skip. Completely idiomatic Rust, completely unextractable. We rewrote it as an inline while loop that walks the scalar bytes directly, extracting bits with shifts and masks. This let us verify the most important Montgomery operation.
-
-In total, the diff is 879 lines on a 9,700-line codebase — about 9 percent. But importantly, only the variable-time optimised multiplication paths are excluded. All core arithmetic, all point operations, compression and decompression — all verified.
--->
-
----
-
 ## Proof issues (1/2)
 
-- Heartbeat (in Lean) escalation
-- Large number literals
+- Lean heartbeat escalation and slow proofs (it is possible to write terribe proofs!)
+- Large number literals (e.g., 78-digit numbers for `ZMod` and kernel elaboration consumes **20+ GB RAM** trying to normalise these)
+- Long functions need to be broken into several pieces for convenience
 
-<!-- 
-### Heartbeat escalation
 
-- Lean's default: **200,000** heartbeats
-- Our proofs require up to **14,000,000** (70x default)
-- Why: `step*` unfolds deeply nested extracted code; `simp` struggles with large intermediate terms
+### Hide expensive hypotheses from `simp` to prevent timeouts:
 
 ```lean
-set_option maxHeartbeats 14000000 in
-theorem mul_spec ...
+private def Hold (P : Prop) : Prop := P  -- opaque to simp
+
+-- Before calling step on an expensive function:
+have h_mod : Hold (...expensive...) := h_original
+clear h_original
+step as ⟨result, h_post⟩    -- simp doesn't touch Hold hypotheses
+change ...expensive... at h_mod  -- recover via definitional equality
 ```
-
-### Large number literals
-
-- Curve constants are 78-digit numbers (e.g. `sqrt(-1)` in the field)
-- Kernel elaboration consumes **20+ GB RAM** trying to normalise these
-- `ring` and `decide` time out
-- The remaining `sorry` in `Math/` are all of this character (5 total) -->
 
 <!--
 Now let's talk about what happens once extraction works and you're actually in Lean trying to prove things. The first problem is heartbeats. Lean has a default computation budget of 200,000 heartbeats. Our proofs need up to 14 million — that's 70 times the default. The reason is that `step*` unfolds the extracted code step by step, and each step can leave large intermediate terms that `simp` has to process.
+
+Case bashing.
 
 The second problem is large number literals. The curve constants — like the square root of minus one in the field — are 78-digit numbers. When Lean's kernel tries to normalise expressions involving these, it can consume over 20 gigabytes of RAM. The ring tactic times out. The decide tactic times out. The five remaining sorry statements in our mathematical library are all of this character — we know the proofs are correct, we just can't get Lean to check them in bounded memory.
 -->
@@ -419,7 +372,7 @@ The second problem is large number literals. The curve constants — like the sq
 ---
 
 ## Proof issues (2/2)
-<!-- 
+
 ### Bridge lemma pattern
 
 Factor expensive ring normalisations into reusable intermediate lemmas:
@@ -433,19 +386,6 @@ private lemma bridge_mul {a b c : FieldElement51}
   simpa only [Nat.cast_mul] using lift_mod_eq _ _ h
 ```
 
-### Hold wrapper pattern
-
-Hide expensive hypotheses from `simp` to prevent timeouts:
-
-```lean
-private def Hold (P : Prop) : Prop := P  -- opaque to simp
-
--- Before calling step on an expensive function:
-have h_mod : Hold (...expensive...) := h_original
-clear h_original
-step as ⟨result, h_post⟩    -- simp doesn't touch Hold hypotheses
-change ...expensive... at h_mod  -- recover via definitional equality
-``` -->
 
 <!--
 Here are two engineering techniques we developed. First, bridge lemmas. When you have a large polynomial expression — say a schoolbook multiplication expanded over five limbs — the ring tactic times out trying to normalise it directly. So we factor the normalisation into small reusable bridge lemmas: bridge_mul, bridge_sq, bridge_sub, bridge_neg, and so on. Each one is cheap to prove, and together they let us build up the full proof without any single expensive step.
@@ -457,19 +397,14 @@ Second, the Hold wrapper. The step tactic runs simp on all hypotheses in the con
 
 ## Trust model
 
-To trust that curve25519-dalek satisfies the proven specifications:
+To know that the specifications are satisfied, we must trust:
 
-1. **The Lean proof checker** — Lean's minimal trusted kernel guarantees correctness
-2. **The Aeneas translation** — extracted Lean code faithfully represents the Rust source
-3. **The specifications** — written in Lean, readable by humans, drillable via interactive features
-4. **External function specs** — dependencies modelled manually in `FunsExternal.lean`
+1. **The Lean proof checker**: Lean's minimal trusted kernel guarantees correctness
+2. **The Aeneas translation**: extracted Lean code faithfully represents the Rust source
+3. **The specifications**: written in Lean, readable by humans, drillable via interactive features
+4. **External function specs**: dependencies modelled manually in `FunsExternal.lean`
 
 <div class="mt-4 text-sm">
-
-**CI enforces trust continuously:**
-- Aeneas extraction freshness — confirms `Funs.lean` / `Types.lean` match the Rust source
-- Source modification tracking — `src-modifications.diff` checked against actual changes
-- Full Lean build on every PR
 
 </div>
 
@@ -479,13 +414,30 @@ Let me briefly touch on the trust model. What do you actually need to trust for 
 
 ---
 
+## Proximity of code and proof
+
+- CI runs Aeneas and Lean: confirms extraction hasn't been tampered with and confirms proofs compile
+- No specs or proofs in the Rust source code
+- Dashboard to show the spec status
+
+<!--
+The proofs live in the same repo as the code and are checked on every PR. This means the verified property is always up to date with the source — there's no gap between what was proved and what ships.
+-->
+
+---
+
 ## Upstreaming
 
 <div class="mt-4">
 
-**Lean culture where the line between tool creators and tool users is very blurred.**
+Project has contributed to Aeneas, Charon and Mathlib. More now that we are concluding.
 
-- We have been and now will more contribute to the upstream projects (Charon/Aeneas/Mathlib)
+
+**Aim: Don't just prove a given spec theorem, instead figure out what can be added to the ecosystem so that similar proofs are easy.**
+
+- Improve Lean library (Aeneas, Mathlib)
+- Improve proof automation (tactics)
+- Improve skill files (or just more examples)
 
 
 <!-- 
@@ -516,14 +468,11 @@ Going forward, we're planning to upstream our Lean models of Rust core types and
 
 ## AI use
 
-- **Humans write the specs** — the creative, domain-specific work
-- **AI assists humans write proofs** — or writes entire proofs autonomously
-
-<div class="mt-4 text-sm">
-
-The proof checker guarantees correctness regardless of who (or what) wrote the proof. AI-generated proofs are checked by Lean's kernel with the same rigour as human-written ones.
-
-</div>
+- **Humans write the specs** 
+- **AI assists to write proofs** 
+- Profilers and other tooling to assist
+- Skill files and improved proof automation
+- The proof checker guarantees correctness of the proof. 
 
 <!--
 A key point about how AI fits into this workflow. Humans write the specifications — that's the creative, domain-specific work where you need to understand what the code is supposed to do. But the proofs? AI can assist with those, or in many cases write them entirely. And the beautiful thing is: it doesn't matter who wrote the proof. Lean's kernel checks it with exactly the same rigour. An AI-generated proof is just as trustworthy as a human-written one, because the proof checker doesn't care about the author — only about logical validity.
