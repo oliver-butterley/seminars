@@ -230,17 +230,56 @@ Human or AI prover can see what the current goal state is and work on it.
 
 ---
 
-## Project summary
+## Summary
 
 <div class="mt-2">
 
-- **192 functions** in total
-- Can effectively verify functional correctness in Lean
+<img src="/images/progress 2026-04-14.png" class="h-80 mx-auto mt-4" />
 
-<img src="/images/progress_2026-04-10.png" class="h-80 mx-auto mt-4" />
+</div>
 
 <!--
 Here's where we stand. 192 functions in scope. You can see the progress over time — the green area is verified functions, steadily climbing. We're now approaching full coverage.
+Can effectively verify functional correctness in Lean.
+-->
+
+---
+
+## Lean specs
+
+Full power and extensibility of Lean available for writing specs.
+
+```lean
+theorem add_spec
+    (self other : EdwardsPoint) (hself : self.IsValid) (hother : other.IsValid) :
+    add self other ⦃ (result : EdwardsPoint) =>
+      result.IsValid ∧
+      result.toPoint = self.toPoint + other.toPoint ⦄ := by ...
+```
+
+<div class="mt-4 text-sm">
+
+- Addition in extended twisted Edwards coordinates $P_i = (X_i, Y_i, Z_i,T_i)$.
+- If inputs `IsValid` then the output `IsValid` (`InBounds` and `OnCurve`).
+- Function satisfies the curve addition formula:
+
+
+Function computes $P_3 = P_1 + P_2$ where
+
+$$A = (Y_1-X_1)(Y_2-X_2),\quad B = (Y_1+X_1)(Y_2+X_2),\quad C = 2d\,T_1T_2,\quad D = 2Z_1Z_2$$
+
+$$E = B-A,\quad F = D-C,\quad G = D+C,\quad H = B+A$$
+
+$$X_3 = EF,\quad Y_3 = GH,\quad T_3 = EH,\quad Z_3 = FG$$
+
+$(X,Y,Z,T)$ satisfies $-X^2+Y^2 = Z^2 + dT^2$ and $XY = ZT$.
+
+</div>
+
+<!--
+The key advantage of using Lean for specs is that you get the full mathematical language. Here the spec for point addition says three things: the function terminates without overflow, the output is a valid curve point, and the output coordinates match the standard Edwards addition formula. That formula — ratios of quadratic expressions — is exactly what any algebraic geometry textbook would write. The spec is not an ad-hoc property, it's the mathematical definition.
+
+Tidy way to track invariant through the codebase. Useful for next steps using this crate for security properties.
 -->
 
 ---
