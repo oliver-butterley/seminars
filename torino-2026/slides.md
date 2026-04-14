@@ -15,7 +15,7 @@ layout: cover
 
 <h1 class="text-4xl">Verifying curve25519-dalek using Lean</h1>
 
-**Oliver Butterley, Markus Dablander, Alessandro D'Angelo, Hoang Le Truong, Liao Zhang**
+**Oliver Butterley**, Markus Dablander, Alessandro D'Angelo, Hoang Le Truong, Liao Zhang
 
 
 
@@ -39,7 +39,7 @@ Good afternoon everyone. I'm Oliver Butterley and I'm going to talk about our ex
 
 ## The Beneficial AI Foundation
 
-One core strategy: making formal verification easier, cheaper and ubiquitous. 
+Core strategy: making formal verification easier, cheaper and ubiquitous. 
 
 ## Lean-Dalek Team
 
@@ -86,14 +86,10 @@ Jure already introduced the Beneficial AI Foundation so I'll be brief. The found
 
 Real-world experience of verifying the functional correctness of production Rust cryptography code in Lean.
 
-<div class="mt-6">
-
-1. **Background:** verification target, toolchain, Lean proofs, Summary
+1. **Background:** verification target, toolchain, Lean proofs, summary
 2. **Extraction issues:** what breaks when you try to extract real Rust
 3. **Proof engineering:** what breaks when you try to prove at scale
 4. **Contributions** to open-source verification infrastructure
-
-</div>
 
 <div class="mt-4 text-sm opacity-70">
 
@@ -287,8 +283,6 @@ Tidy way to track invariant through the codebase. Useful for next steps using th
 
 ## Extraction issues
 
-<div class="mt-2">
-
 - Initially some Rust wasn't supported by Charon/Aeneas (e.g., iterators)
 - Some modifications to the source code (later reverted)
 - Some tweaks to the output Lean code (later reverted)
@@ -334,7 +328,6 @@ while i < 5 {
 ```
 
 </div> -->
-</div>
 
 <!--
 Let me walk through the extraction issues — the gap between idiomatic Rust and what Charon and Aeneas can actually handle. First: dynamic array indexing. If you write `output[i] = value` where i is computed at runtime, Aeneas hits an internal error. Two functions in scalar.rs — non_adjacent_form and as_radix_2w — have this pattern, and we had to exclude them and all their callers. Second: iterators. Anything using `.map()`, `.rev()`, the Iterator trait — Aeneas can't model this. And third: for-loops. Every `for i in 0..n` has to become a while-loop. It's mechanical but it touches a lot of code.
@@ -428,8 +421,6 @@ The proofs live in the same repo as the code and are checked on every PR. This m
 
 ## Upstreaming
 
-<div class="mt-4">
-
 Project has contributed to Aeneas, Charon and Mathlib. More now that we are concluding.
 
 
@@ -455,8 +446,6 @@ Project has contributed to Aeneas, Charon and Mathlib. More now that we are conc
 **Next:**
 - Upstream Lean models of Rust core types and operations
 - Continue isolating and reporting extraction edge cases to support the Aeneas/Charon developers -->
-
-</div>
 
 <!--
 I want to emphasise the upstreaming culture. This isn't just about our project — we contribute back to the ecosystem. We've merged six PRs into Aeneas: better docstring generation, showing Rust visibility in Lean output, a version flag, replacing custom implementations with upstream equivalents, and a fix for the progress tactic. We've filed six issues against Charon and eight or more against Aeneas — things like exponential slowdown with typenum, wrapping shift bugs, codegen issues. Each one we try to isolate into a minimal reproducer so the Aeneas and Charon maintainers can act on it efficiently.
@@ -492,15 +481,11 @@ hide: true
 
 ## Conclusions
 
-<div class="mt-4">
-
 **The Charon/Aeneas/Lean toolchain works for verifying production cryptographic Rust.**
 
 The real question is:
 
 **How can we make it very easy for anyone to verify Rust code like this.**
-
-</div>
 
 <!--
 To wrap up. The toolchain works. We've verified 84 percent of curve25519-dalek's functions — all the core arithmetic, point operations, compression and decompression. The key lessons: plan for iterator elimination from the start. Know that trait boundaries are the extraction frontier. 
