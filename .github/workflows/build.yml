@@ -1,4 +1,4 @@
-name: Build slide decks
+name: Build and deploy slide decks
 
 on:
   push:
@@ -27,5 +27,44 @@ jobs:
         working-directory: ${{ matrix.deck }}
 
       - name: Build slides
-        run: npx slidev build --out dist
+        run: npx slidev build --out dist --base /${{ matrix.deck }}/
         working-directory: ${{ matrix.deck }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.deck }}
+          path: ${{ matrix.deck }}/dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download seatle-2026
+        uses: actions/download-artifact@v4
+        with:
+          name: seatle-2026
+          path: pages/seatle-2026
+
+      - name: Download torino-2026
+        uses: actions/download-artifact@v4
+        with:
+          name: torino-2026
+          path: pages/torino-2026
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
