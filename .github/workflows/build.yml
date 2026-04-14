@@ -27,7 +27,13 @@ jobs:
         working-directory: ${{ matrix.deck }}
 
       - name: Build slides
-        run: npx slidev build --out dist --base /seminar/${{ matrix.deck }}/
+        run: npx slidev build --out dist --base /seminars/${{ matrix.deck }}/
+        working-directory: ${{ matrix.deck }}
+
+      - name: Copy static assets into dist
+        run: |
+          cp -rL images dist/images
+          [ -f pipeline.svg ] && cp pipeline.svg dist/ || true
         working-directory: ${{ matrix.deck }}
 
       - name: Upload build artifact
