@@ -1,5 +1,5 @@
 {
-  "name": "curve25519-dalek-seminar",
+  "name": "seatle-2026-lean-google",
   "private": true,
   "scripts": {
     "dev": "slidev --open",

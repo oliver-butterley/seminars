@@ -1,0 +1,31 @@
+name: Build slide decks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        deck: [seatle-2026, torino-2026]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ matrix.deck }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ${{ matrix.deck }}
+
+      - name: Build slides
+        run: npx slidev build --out dist
+        working-directory: ${{ matrix.deck }}
