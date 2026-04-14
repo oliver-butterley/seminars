@@ -474,10 +474,20 @@ Going forward, we're planning to upstream our Lean models of Rust core types and
 - Skill files and improved proof automation
 - The proof checker guarantees correctness of the proof. 
 
+<img src="/images/profiler.png" class="h-52 mx-auto mt-4" />
+
 <!--
 A key point about how AI fits into this workflow. Humans write the specifications — that's the creative, domain-specific work where you need to understand what the code is supposed to do. But the proofs? AI can assist with those, or in many cases write them entirely. And the beautiful thing is: it doesn't matter who wrote the proof. Lean's kernel checks it with exactly the same rigour. An AI-generated proof is just as trustworthy as a human-written one, because the proof checker doesn't care about the author — only about logical validity.
 -->
 
+---
+
+## Leaderboard 
+
+<img src="/images/leaderboard.png" class="h-96 mx-auto mt-4" />
+
+---
+hide: true
 ---
 
 ## Conclusions
