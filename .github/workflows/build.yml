@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        deck: [seatle-2026, torino-2026]
+        deck: [seattle-2026, torino-2026]
 
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +27,7 @@ jobs:
         working-directory: ${{ matrix.deck }}
 
       - name: Build slides
-        run: npx slidev build --out dist --base /${{ matrix.deck }}/
+        run: npx slidev build --out dist --base /seminar/${{ matrix.deck }}/
         working-directory: ${{ matrix.deck }}
 
       - name: Upload build artifact
@@ -48,11 +48,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download seatle-2026
+      - name: Download seattle-2026
         uses: actions/download-artifact@v4
         with:
-          name: seatle-2026
-          path: pages/seatle-2026
+          name: seattle-2026
+          path: pages/seattle-2026
 
       - name: Download torino-2026
         uses: actions/download-artifact@v4
