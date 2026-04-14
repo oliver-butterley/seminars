@@ -39,8 +39,7 @@ Good afternoon everyone. I'm Oliver Butterley and I'm going to talk about our ex
 
 ## The Beneficial AI Foundation
 
-One core mission: making formal verification easier, cheaper and ubiquitous. 
-TODO: is this reasonable?
+One core strategy: making formal verification easier, cheaper and ubiquitous. 
 
 ## Lean-Dalek Team
 
@@ -72,6 +71,11 @@ TODO: is this reasonable?
   </div>
 </div>
 
+## Thanks to {.mt-6}
+
+Son Ho (Aeneas) and Guillaume Boisseau (Charon) and others for their ongoing support.
+
+
 <!--
 Jure already introduced the Beneficial AI Foundation so I'll be brief. The foundation's mission is ensuring AI benefits humanity, and one concrete effort is formally verifying critical open-source infrastructure. This is the team working on the curve25519-dalek verification — five of us, a mix of mathematicians and computer scientists.
 -->
@@ -80,11 +84,11 @@ Jure already introduced the Beneficial AI Foundation so I'll be brief. The found
 
 ## Overview
 
-What follows is our **real-world experience** of verifying the functional correctness of production Rust cryptography code in Lean.
+Real-world experience of verifying the functional correctness of production Rust cryptography code in Lean.
 
 <div class="mt-6">
 
-1. **Background:** verification target, toolchain, Lean proofs
+1. **Background:** verification target, toolchain, Lean proofs, Summary
 2. **Extraction issues:** what breaks when you try to extract real Rust
 3. **Proof engineering:** what breaks when you try to prove at scale
 4. **Contributions** to open-source verification infrastructure
@@ -108,11 +112,10 @@ The aim of this talk is to share real-world experience. Not the theory of how th
 <div class="grid grid-cols-2 gap-6 mt-2">
 <div>
 
-- Pure Rust library for **elliptic curve primitives**, focussing on speed
+- Pure Rust library for **elliptic curve primitives**
 - ~33k LOC
-- Multiple backends, we focus on the **serial/u64 backend**
-- Low control-flow complexity, **high data-complexity**
-- E.g., Bit-level manipulations on 5×u64 limb representations
+- We target **serial/u64 backend**
+- E.g., Bit-level manipulations on 5 × u64 limbs
 - E.g., constructors and operations that guarantee that curve points stay as curve points
 
 <div class="mt-4 text-sm opacity-70">
@@ -160,10 +163,10 @@ Jure already introduced curve25519-dalek in his talk, so I'll just highlight the
 <div class="mt-4 text-sm">
 
 **The Lean model** faithfully captures Rust semantics:
-- `Result` monad — every operation can succeed (`ok`), fail (`fail`), or diverge (`div`)
+- `Result` monad: operations can succeed (`ok`), fail (`fail`), or diverge (`div`)
 - Arithmetic operations are fallible (overflow checking), etc.
 - Imperative code via `do`-notation with monadic bind
-- `Funs.lean`: in our project 8,176 lines of extracted function definitions
+- `Funs.lean`: 8,176 lines of extracted function definitions
 
 </div>
 
@@ -174,7 +177,7 @@ Charon also ferried the living mortals Aeneas to the underworld and back again.
 -->
 
 ---
-hide: true
+hide: false
 ---
 
 <img src="/images/Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_10_(Canto_III_-_Charon_herds_the_sinners_onto_his_boat).jpg" class="h-100 mx-auto" />
@@ -221,6 +224,8 @@ The spec states: the function succeeds, all output limbs are bounded, and the re
 
 <!--
 This is what a proof actually looks like. At the top, the spec theorem states what reduce must satisfy: it succeeds — no overflow — all output limbs stay below 2 to the 52, and the mathematical value is preserved modulo p. The proof unfolds the function definition, then `step*` — a tactic from the Aeneas library — processes each extracted operation one by one. It generates side goals for each arithmetic operation that could overflow, which we discharge with `simp` and `scalar_tac`. The final goals are the actual mathematical properties. This is the interactive theorem prover experience: you write the spec, unfold the function, and the system guides you through exactly what needs to be proved.
+
+Human or AI prover can see what the current goal state is and work on it.
 -->
 
 ---
