@@ -379,6 +379,7 @@ private lemma bridge_mul {a b c : FieldElement51}
   simpa only [Nat.cast_mul] using lift_mod_eq _ _ h
 ```
 
+### Expensive unwrapping of array updates
 
 <!--
 Here are two engineering techniques we developed. First, bridge lemmas. When you have a large polynomial expression — say a schoolbook multiplication expanded over five limbs — the ring tactic times out trying to normalise it directly. So we factor the normalisation into small reusable bridge lemmas: bridge_mul, bridge_sq, bridge_sub, bridge_neg, and so on. Each one is cheap to prove, and together they let us build up the full proof without any single expensive step.
@@ -421,7 +422,7 @@ The proofs live in the same repo as the code and are checked on every PR. This m
 
 ## Upstreaming
 
-Project has contributed to Aeneas, Charon and Mathlib. More now that we are concluding.
+Project has contributed to Aeneas and Mathlib. More now that we are concluding.
 
 
 **Aim: Don't just prove a given spec theorem, instead figure out what can be added to the ecosystem so that similar proofs are easy.**
@@ -471,7 +472,7 @@ A key point about how AI fits into this workflow. Humans write the specification
 
 ---
 
-## Leaderboard 
+## Leaderboard (of worst offenders)
 
 <img src="/images/leaderboard.png" class="h-96 mx-auto mt-4" />
 
@@ -501,6 +502,8 @@ What's next: completing the remaining 20 proofs, resolving those 5 sorry stateme
 layout: center
 class: text-center
 ---
+TLDR; toolchain works, lots of possible refinements to aid scalability 
+
 
 ## Thank you
 
