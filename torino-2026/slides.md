@@ -87,7 +87,7 @@ Jure already introduced the Beneficial AI Foundation so I'll be brief. The found
 Real-world experience of verifying the functional correctness of production Rust cryptography code in Lean.
 
 1. **Background:** verification target, toolchain, Lean proofs, summary
-2. **Extraction issues:** what breaks when you try to extract real Rust
+2. **Extraction challenges:** what breaks when you try to extract real Rust
 3. **Proof engineering:** what breaks when you try to prove at scale
 4. **Contributions** to open-source verification infrastructure
 
@@ -173,7 +173,7 @@ Charon also ferried the living mortals Aeneas to the underworld and back again.
 -->
 
 ---
-hide: false
+hide: true
 ---
 
 <img src="/images/Gustave_Doré_-_Dante_Alighieri_-_Inferno_-_Plate_10_(Canto_III_-_Charon_herds_the_sinners_onto_his_boat).jpg" class="h-100 mx-auto" />
@@ -226,21 +226,6 @@ Human or AI prover can see what the current goal state is and work on it.
 
 ---
 
-## Summary
-
-<div class="mt-2">
-
-<img src="/images/progress 2026-04-14.png" class="h-80 mx-auto mt-4" />
-
-</div>
-
-<!--
-Here's where we stand. 192 functions in scope. You can see the progress over time — the green area is verified functions, steadily climbing. We're now approaching full coverage.
-Can effectively verify functional correctness in Lean.
--->
-
----
-
 ## Lean specs
 
 Full power and extensibility of Lean available for writing specs.
@@ -257,13 +242,17 @@ theorem add_spec
 
 - Addition in extended twisted Edwards coordinates $P_i = (X_i, Y_i, Z_i,T_i)$.
 - If inputs `IsValid` then the output `IsValid` (`InBounds` and `OnCurve`<sup>†</sup>).
-- Function computes $P_3 = P_1 + P_2$ where
+<div class="border border-dashed border-gray-400 rounded px-3 py-2 mt-2">
+
+Function computes $P_3 = P_1 + P_2$ where
 
 $$A = (Y_1-X_1)(Y_2-X_2),\quad B = (Y_1+X_1)(Y_2+X_2),\quad C = 2d\,T_1T_2,\quad D = 2Z_1Z_2$$
 
 $$E = B-A,\quad F = D-C,\quad G = D+C,\quad H = B+A$$
 
 $$X_3 = EF,\quad Y_3 = GH,\quad T_3 = EH,\quad Z_3 = FG$$
+
+</div>
 
 <div class="text-xs opacity-60 mt-2">
 
@@ -281,7 +270,22 @@ Tidy way to track invariant through the codebase. Useful for next steps using th
 
 ---
 
-## Extraction issues
+## Summary
+
+<div class="mt-2">
+
+<img src="/images/progress 2026-04-14.png" class="h-96 mx-auto mt-2" />
+
+</div>
+
+<!--
+Here's where we stand. 192 functions in scope. You can see the progress over time — the green area is verified functions, steadily climbing. We're now approaching full coverage.
+Can effectively verify functional correctness in Lean.
+-->
+
+---
+
+## Extraction challenges
 
 - Initially some Rust wasn't supported by Charon/Aeneas (e.g., iterators)
 - Some modifications to the source code (later reverted)
@@ -335,7 +339,9 @@ Let me walk through the extraction issues — the gap between idiomatic Rust and
 
 ---
 
-## Proof issues (1/2)
+## Proof engineering (1/2)
+
+In general not a problem to complete proofs but the UX can be improved.
 
 - Lean heartbeat escalation and slow proofs (it is possible to write terribe proofs!)
 - Large number literals (e.g., 78-digit numbers for `ZMod` and kernel elaboration consumes **20+ GB RAM** trying to normalise these)
@@ -364,22 +370,21 @@ The second problem is large number literals. The curve constants — like the sq
 
 ---
 
-## Proof issues (2/2)
 
-### Bridge lemma pattern
+<div class="grid grid-cols-2 gap-6 mt-4">
+<div>
 
-Factor expensive ring normalisations into reusable intermediate lemmas:
-
-```lean
--- Instead of letting `ring` handle the full expression, factor it:
-private lemma bridge_mul {a b c : FieldElement51}
-    (h : Field51_as_Nat a ≡ Field51_as_Nat b * Field51_as_Nat c [MOD p]) :
-    a.toField = b.toField * c.toField := by
-  unfold FieldElement51.toField
-  simpa only [Nat.cast_mul] using lift_mod_eq _ _ h
-```
+## Proof engineering (2/2)
 
 ### Expensive unwrapping of array updates
+
+</div>
+<div>
+
+<img src="/images/array_updates.png" class="w-full object-contain" />
+
+</div>
+</div>
 
 <!--
 Here are two engineering techniques we developed. First, bridge lemmas. When you have a large polynomial expression — say a schoolbook multiplication expanded over five limbs — the ring tactic times out trying to normalise it directly. So we factor the normalisation into small reusable bridge lemmas: bridge_mul, bridge_sq, bridge_sub, bridge_neg, and so on. Each one is cheap to prove, and together they let us build up the full proof without any single expensive step.
@@ -397,6 +402,9 @@ To know that the specifications are satisfied, we must trust:
 2. **The Aeneas translation**: extracted Lean code faithfully represents the Rust source
 3. **The specifications**: written in Lean, readable by humans, drillable via interactive features
 4. **External function specs**: dependencies modelled manually in `FunsExternal.lean`
+
+
+We use many things from Mathlib, this doesn't require additional trust.
 
 <div class="mt-4 text-sm">
 
@@ -502,7 +510,7 @@ What's next: completing the remaining 20 proofs, resolving those 5 sorry stateme
 layout: center
 class: text-center
 ---
-TLDR; toolchain works, lots of possible refinements to aid scalability 
+Summary: toolchain works, lots of possible refinements to aid scalability 
 
 
 ## Thank you
