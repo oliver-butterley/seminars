@@ -46,6 +46,7 @@ jobs:
         with:
           name: ${{ matrix.deck }}
           path: ${{ matrix.deck }}/dist
+          if-no-files-found: error
 
   build-verso:
     runs-on: ubuntu-latest
@@ -62,14 +63,15 @@ jobs:
           test: false
 
       - name: Build slides
-        run: lake exe slides --output dist
+        run: lake exe slides  # writes _slides/
         working-directory: ${{ matrix.deck }}
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.deck }}
-          path: ${{ matrix.deck }}/dist
+          path: ${{ matrix.deck }}/_slides
+          if-no-files-found: error
 
   deploy:
     needs: [build, build-verso]
