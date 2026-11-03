@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         deck: [seattle-2026, torino-2026]
 
@@ -18,12 +19,16 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: ${{ matrix.deck }}/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        env:
+          # playwright-chromium is only needed for local PDF export; skip the
+          # browser download (unsupported on the ubuntu-latest runner image)
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
         working-directory: ${{ matrix.deck }}
 
       - name: Build slides
@@ -78,6 +83,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Add index page
+        run: mkdir -p pages && cp index.html pages/
+
       - name: Download seattle-2026
         uses: actions/download-artifact@v4
         with:
