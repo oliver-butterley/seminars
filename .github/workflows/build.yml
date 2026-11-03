@@ -42,8 +42,32 @@ jobs:
           name: ${{ matrix.deck }}
           path: ${{ matrix.deck }}/dist
 
+  build-verso:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        deck: [stanford-2026]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: ${{ matrix.deck }}
+          test: false
+
+      - name: Build slides
+        run: lake exe slides --output dist
+        working-directory: ${{ matrix.deck }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.deck }}
+          path: ${{ matrix.deck }}/dist
+
   deploy:
-    needs: build
+    needs: [build, build-verso]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -65,6 +89,12 @@ jobs:
         with:
           name: torino-2026
           path: pages/torino-2026
+
+      - name: Download stanford-2026
+        uses: actions/download-artifact@v4
+        with:
+          name: stanford-2026
+          path: pages/stanford-2026
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
