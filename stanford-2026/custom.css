@@ -1,0 +1,227 @@
+/* ── Signal Shot / BAIF look, layered on the reveal.js `white` theme ──
+   Modelled on the structure of Leo de Moura's VersoSlides decks, with BAIF
+   colours. Uses only the bundled Source Sans Pro, so it works offline. */
+
+:root {
+  --baif-green: #15c639;       /* logo dot */
+  --baif-green-dark: #15803d;  /* text-safe green on white */
+  --baif-green-tint: #f0fdf4;
+  --baif-green-border: #bbf7d0;
+  --baif-dark: #1f2937;        /* title and section slides */
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --bg-code: #f8fafc;
+  --border-code: #e2e8f0;
+}
+
+/* ── Base typography ── */
+.reveal {
+  color: var(--text-dark);
+  font-size: 30px;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  text-transform: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+/* Sub-headings within a slide (## in Slides.lean) */
+.reveal .slides section h3 {
+  font-size: 0.95em;
+  margin: 0.8em 0 0.3em 0;
+  color: var(--baif-green-dark);
+}
+
+/* Slide title with a thin green rule beneath it */
+.reveal .slides section > h2 {
+  font-size: 1.3em;
+  margin: 0 0 0.8em 0;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--baif-green);
+}
+
+.reveal ul, .reveal ol {
+  display: block;
+  margin: 0 0 0 1.2em;
+  line-height: 1.5;
+}
+.reveal ul li, .reveal ol li {
+  margin-bottom: 0.35em;
+}
+.reveal ul ul {
+  font-size: 0.9em;
+}
+
+.reveal p {
+  line-height: 1.5;
+  margin: 0.5em 0;
+}
+
+.reveal strong {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.reveal a {
+  color: var(--baif-green-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+.reveal a:hover {
+  text-decoration: underline;
+}
+
+.reveal .slide-number {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.reveal .progress {
+  color: var(--baif-green);
+}
+
+/* ── Title and section slides: dark background ──
+   Use `backgroundColor := some "#1f2937"` in the slide's %%% block. */
+.reveal section[data-background-color="#1f2937"] {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+.reveal section[data-background-color="#1f2937"] > h2 {
+  color: #ffffff;
+  font-size: 1.8em;
+  border-bottom: 3px solid var(--baif-green);
+  padding-bottom: 0.3em;
+}
+.reveal section[data-background-color="#1f2937"] p,
+.reveal section[data-background-color="#1f2937"] li {
+  color: rgba(255, 255, 255, 0.85);
+}
+.reveal section[data-background-color="#1f2937"] strong {
+  color: #ffffff;
+}
+.reveal section[data-background-color="#1f2937"] a {
+  color: var(--baif-green);
+}
+.reveal section[data-background-color="#1f2937"] code {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* ── Code blocks (non-Lean, e.g. ```code lean) ── */
+.reveal pre {
+  width: 100%;
+  font-size: 0.55em;
+  margin: 0.5em 0;
+  box-shadow: none;
+  border: 1px solid var(--border-code);
+  border-radius: 6px;
+  background: var(--bg-code);
+}
+.reveal pre code {
+  padding: 0.8em 1em;
+  max-height: 70vh;
+  line-height: 1.5;
+  background: var(--bg-code);
+  color: var(--text-dark);
+}
+
+/* ── Inline code ── */
+.reveal code {
+  font-size: 0.9em;
+}
+.reveal p code, .reveal li code {
+  background: #f1f5f9;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+/* ── Lean code (elaborated ```lean blocks) ── */
+.reveal,
+.reveal section {
+  --verso-code-keyword-color: #cf222e;
+  --verso-code-const-color: #0550ae;
+  --verso-code-var-color: #1e293b;
+  --verso-code-color: #1e293b;
+  --verso-info-indicator-color: var(--baif-green-dark);
+}
+.reveal code.hl.lean.block {
+  background: var(--bg-code);
+  border: 1px solid var(--border-code);
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 0.8em 1em;
+  font-size: 0.55em;
+  line-height: 1.5;
+  text-align: left;
+}
+.hl.lean .keyword {
+  font-weight: 700 !important;
+}
+.hl.lean .var {
+  font-style: normal !important;
+}
+
+/* ── Helpers ── */
+
+/* Green text accent: {class "accent"}[...] or :::class "accent" */
+.accent {
+  color: var(--baif-green-dark);
+  font-weight: 600;
+}
+
+/* Callout box: :::class "key-box" */
+.key-box {
+  background: var(--baif-green-tint);
+  border: 1px solid var(--baif-green-border);
+  border-left: 4px solid var(--baif-green);
+  border-radius: 0 8px 8px 0;
+  padding: 0.5em 1em;
+  margin: 0.5em 0;
+}
+
+/* Muted small text, e.g. captions: :::class "caption" */
+.caption {
+  font-size: 0.55em !important;
+  color: var(--text-muted);
+}
+
+/* Two equal columns: :::hstack */
+.reveal .r-hstack {
+  display: flex !important;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5em;
+}
+.reveal .r-hstack > * {
+  flex: 1;
+}
+
+/* Blockquotes as callouts too */
+.reveal blockquote {
+  width: 100%;
+  box-sizing: border-box;
+  font-style: normal;
+  border-left: 4px solid var(--baif-green);
+  padding: 0.4em 1em;
+  margin: 0.5em 0;
+  background: var(--baif-green-tint);
+  border-radius: 0 6px 6px 0;
+  box-shadow: none;
+}
+
+/* ── Images ── */
+.reveal section img {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  margin: 0.3em 0;
+}
