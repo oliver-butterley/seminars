@@ -12,9 +12,7 @@ open VersoSlides
 {image "images/BAIF_Logo.png" (height := "60px")}[Beneficial AI Foundation logo]
 :::
 
-:::attr (style := "font-size: 0.75em; opacity: 0.7")
 Stanford, 7th November 2026
-:::
 
 # Signal Shot
 
@@ -93,9 +91,7 @@ TODO
 
 {image "images/spqr-performance.png" (height := "440px")}[SPQR build performance over the last 200 commits]
 
-:::attr (style := "font-size: 0.5em; opacity: 0.7")
 SPQR, last 200 commits. Left: build and rebuild time (s). Right: peak RAM.
-:::
 
 :::notes
 Specs and proofs kept growing. The drops come from Lean updates and refactoring: the same statements, proved more efficiently.
