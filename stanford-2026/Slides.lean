@@ -86,7 +86,7 @@ No problems found!
 
 Yep, AI is very good at writing high quality Lean code, allows us to move fast
 
-# Organization of large Lean repos
+# curve25519-dalek: what was verified
 
 {image "images/dalek-composition/dalek-composition.svg" (width := "100%")}[curve25519-dalek verification in lines: Rust, generated Lean, spec statements, definitions and proofs]
 
