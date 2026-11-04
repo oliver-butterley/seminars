@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 598" width="960" height="598" font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif">
+<defs><pattern id="hatch-grey" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><rect width="7" height="7" fill="#7c7b77"/><rect width="2.5" height="7" fill="#ffffff" opacity="0.6"/></pattern><pattern id="hatch-orange" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(45)"><rect width="7" height="7" fill="#eb6834"/><rect width="2.5" height="7" fill="#ffffff" opacity="0.6"/></pattern></defs>
+<rect width="960" height="598" fill="#ffffff"/>
+<line x1="300.0" y1="30" x2="300.0" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="300.0" y="500" fill="#64748b" font-size="12" text-anchor="middle">0</text>
+<line x1="376.6666666666667" y1="30" x2="376.6666666666667" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="376.6666666666667" y="500" fill="#64748b" font-size="12" text-anchor="middle">10K</text>
+<line x1="453.33333333333337" y1="30" x2="453.33333333333337" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="453.33333333333337" y="500" fill="#64748b" font-size="12" text-anchor="middle">20K</text>
+<line x1="530.0" y1="30" x2="530.0" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="530.0" y="500" fill="#64748b" font-size="12" text-anchor="middle">30K</text>
+<line x1="606.6666666666667" y1="30" x2="606.6666666666667" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="606.6666666666667" y="500" fill="#64748b" font-size="12" text-anchor="middle">40K</text>
+<line x1="683.3333333333333" y1="30" x2="683.3333333333333" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="683.3333333333333" y="500" fill="#64748b" font-size="12" text-anchor="middle">50K</text>
+<line x1="760.0" y1="30" x2="760.0" y2="482" stroke="#e5e7eb" stroke-width="1"/>
+<text x="760.0" y="500" fill="#64748b" font-size="12" text-anchor="middle">60K</text>
+<text x="760" y="518" fill="#64748b" font-size="12" text-anchor="end">lines</text>
+<rect x="20" y="37" width="10" height="10" rx="2" fill="#7c7b77"/>
+<text x="36" y="46" fill="#1e293b" font-size="13" font-weight="600" letter-spacing="0.04em">THE CODE</text>
+<text x="286" y="73" fill="#1e293b" font-size="15" text-anchor="end">Rust, translated part</text>
+<text x="286" y="89" fill="#64748b" font-size="12" text-anchor="end">of the 24.6k-line crate</text>
+<rect x="300" y="58" width="28.658999999999992" height="22" fill="#7c7b77"/>
+<path d="M330.659,58 H424.93033333333335 Q428.93033333333335,58 428.93033333333335,62 V76 Q428.93033333333335,80 424.93033333333335,80 H330.659 Z" fill="url(#hatch-grey)"/>
+<text x="436.93033333333335" y="74" fill="#475569" font-size="14">4.0k code + 12.8k constant tables</text>
+<rect x="20" y="109" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="36" y="118" fill="#1e293b" font-size="13" font-weight="600" letter-spacing="0.04em">THE RESULT</text>
+<text x="286" y="145" fill="#1e293b" font-size="15" text-anchor="end">Spec statements</text>
+<text x="286" y="161" fill="#64748b" font-size="12" text-anchor="end">256 distinct, repeated per build config</text>
+<rect x="300" y="130" width="6.487000000000023" height="22" fill="#eb6834"/>
+<path d="M308.487,130 H319.161 Q323.161,130 323.161,134 V148 Q323.161,152 319.161,152 H308.487 Z" fill="url(#hatch-orange)"/>
+<text x="331.161" y="146" fill="#475569" font-size="14">3.0k (1.1k distinct)</text>
+<rect x="20" y="181" width="10" height="10" rx="2" fill="#1baf7a"/>
+<text x="36" y="190" fill="#1e293b" font-size="13" font-weight="600" letter-spacing="0.04em">READ THESE TO TRUST THE RESULT</text>
+<text x="286" y="217" fill="#1e293b" font-size="15" text-anchor="end">Definitions: dalek</text>
+<text x="286" y="233" fill="#64748b" font-size="12" text-anchor="end">spec vocabulary</text>
+<path d="M300,202 H302.00866666666667 Q304.01733333333334,202 304.01733333333334,204.00866666666667 V221.99133333333333 Q304.01733333333334,224 302.00866666666667,224 H300 Z" fill="#1baf7a"/>
+<text x="312.01733333333334" y="218" fill="#475569" font-size="14">0.5k</text>
+<text x="286" y="265" fill="#1e293b" font-size="15" text-anchor="end">Definitions: Curve25519</text>
+<text x="286" y="281" fill="#64748b" font-size="12" text-anchor="end">the curve, independent of dalek</text>
+<path d="M300,250 H300.6938333333334 Q301.3876666666667,250 301.3876666666667,250.69383333333334 V271.3061666666666 Q301.3876666666667,272 300.6938333333334,272 H300 Z" fill="#1baf7a"/>
+<text x="309.3876666666667" y="266" fill="#475569" font-size="14">0.2k</text>
+<text x="286" y="313" fill="#1e293b" font-size="15" text-anchor="end">Rust patches</text>
+<text x="286" y="329" fill="#64748b" font-size="12" text-anchor="end">applied before translation, for Aeneas</text>
+<path d="M300,298 H301.35316666666665 Q302.7063333333333,298 302.7063333333333,299.35316666666665 V318.64683333333335 Q302.7063333333333,320 301.35316666666665,320 H300 Z" fill="#1baf7a"/>
+<text x="310.7063333333333" y="314" fill="#475569" font-size="14">27 patches: +224 / −129 lines</text>
+<rect x="20" y="349" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="36" y="358" fill="#1e293b" font-size="13" font-weight="600" letter-spacing="0.04em">CHECKED BY LEAN, NEED NOT BE READ</text>
+<text x="286" y="385" fill="#1e293b" font-size="15" text-anchor="end">Proofs</text>
+<text x="286" y="401" fill="#64748b" font-size="12" text-anchor="end">incl. proof-only definitions</text>
+<path d="M300,370 H648.1683333333333 Q652.1683333333333,370 652.1683333333333,374 V388 Q652.1683333333333,392 648.1683333333333,392 H300 Z" fill="#2a78d6"/>
+<text x="660.1683333333333" y="386" fill="#475569" font-size="14">45.9k</text>
+<rect x="20" y="421" width="10" height="10" rx="2" fill="#7c7b77"/>
+<text x="36" y="430" fill="#1e293b" font-size="13" font-weight="600" letter-spacing="0.04em">GENERATED BY AENEAS, NEED NOT BE READ</text>
+<text x="286" y="457" fill="#1e293b" font-size="15" text-anchor="end">Lean translation</text>
+<rect x="300" y="442" width="322.9363333333333" height="22" fill="#7c7b77"/>
+<path d="M624.9363333333333,442 H722.2283333333334 Q726.2283333333334,442 726.2283333333334,446 V460 Q726.2283333333334,464 722.2283333333334,464 H624.9363333333333 Z" fill="url(#hatch-grey)"/>
+<text x="734.2283333333334" y="458" fill="#475569" font-size="14">42.4k code + 13.2k tables</text>
+<text x="20" y="546" fill="#64748b" font-size="12.5">Also used: the EllipticCurve library (1.1k definitions, 6.8k proofs). Not translated: SIMD backends and optional features.</text>
+<text x="20" y="564" fill="#64748b" font-size="12.5">Not shown: models of subtle and zeroize (to be proven separately) and of the Rust std library (moving into Aeneas).</text>
+<text x="20" y="582" fill="#64748b" font-size="12.5">Lines: non-blank, non-comment; imports, namespaces and axiom checks not counted.</text>
+</svg>

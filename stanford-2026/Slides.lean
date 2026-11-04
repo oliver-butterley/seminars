@@ -88,7 +88,11 @@ Yep, AI is very good at writing high quality Lean code, allows us to move fast
 
 # Organization of large Lean repos
 
-TODO: image of the breakdown of lines of code in the curve25519-dalek project, illustration of how recall and print axioms can be used
+{image "images/dalek-composition/dalek-composition.svg" (width := "100%")}[curve25519-dalek verification in lines: Rust, generated Lean, spec statements, definitions and proofs]
+
+# Spec summaries: recall and print axioms
+
+TODO: illustration of how recall and print axioms can be used
 
 # Sophisticated specs: e.g., eliiptic curves
 
