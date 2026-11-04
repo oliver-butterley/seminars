@@ -19,9 +19,30 @@ Stanford, 7th November 2026
 # Signal Shot
 
 * Machine-checked proof that Signal's cryptography does what it claims
-* Target: libsignal, about 45,000 lines of Rust plus its cryptographic dependencies
+* Target: libsignal and its cryptographic dependencies
 * Launched April 2026: BAIF with the Lean FRO and Signal engineers
 * Open source messaging software, open source tools for verification
+
+# The target: libsignal and its cryptography
+
+{image "images/libsignal-overview/functional-correctness.svg" (width := "100%")}[libsignal crates and their cryptographic dependencies, with sizes]
+
+# Building on great work by others
+
+## Protocol design
+
+* PQXDH analysed in ProVerif and CryptoVerif, with design improvements (Bhargavan, Jacomme, Kiefer, Schmidt)
+* SPQR: security proofs (Eurocrypt and USENIX 2025), ProVerif models by Signal and Cryspen
+
+## Code
+
+* Cryspen's hax → F\*: panic freedom and core correctness of SPQR
+* libcrux ML-KEM: panic freedom, functional correctness, secret independence
+* Signal in-house: proofs run on every push, and the build fails if they fail
+
+:::class "caption"
+[USENIX Security 2024](https://www.usenix.org/conference/usenixsecurity24/presentation/bhargavan) · [Signal: SPQR](https://signal.org/blog/spqr/) · [Cryspen: SPQR verification](https://cryspen.com/post/signal-spqr-verification/)
+:::
 
 # The gap
 
@@ -75,11 +96,61 @@ TODO: `mul` and `is_small_order` specs
 
 Lean allows essentially unlimited expressiveness in the specs
 
+# Rust → Lean with Aeneas
+
+:::hstack
+```code rust
+pub(crate) fn mul_by_pow_2(&self, k: u32)
+    -> EdwardsPoint {
+  debug_assert!(k > 0);
+  let mut r: CompletedPoint;
+  let mut s = self.as_projective();
+  let mut i = 0;
+  while i < k - 1 {
+    r = s.double();
+    s = r.as_projective();
+    i += 1;
+  }
+  s.double().as_extended()
+}
+```
+
+```code lean
+def mul_by_pow_2_loop (k : U32)
+    (s : ProjectivePoint) (i : U32) :
+    Result ProjectivePoint := do
+  let i1 ← k - 1#u32
+  if i < i1 then
+    let r ← ProjectivePoint.double s
+    let s1 ← CompletedPoint.as_projective r
+    let i2 ← i + 1#u32
+    mul_by_pow_2_loop k s1 i2
+  else ok s
+partial_fixpoint
+
+def mul_by_pow_2 (self : EdwardsPoint)
+    (k : U32) : Result EdwardsPoint := do
+  massert (k > 0#u32)
+  let s ← EdwardsPoint.as_projective self
+  let s1 ← mul_by_pow_2_loop k s 0#u32
+  let cp ← ProjectivePoint.double s1
+  CompletedPoint.as_extended cp
+```
+:::
+
+:::class "caption"
+`curve25519-dalek/src/edwards.rs` and its Aeneas translation in `Funs.lean` (namespaces shortened). Every operation returns a `Result`: `k - 1` and `i + 1` are checked for overflow, the loop becomes a recursive function.
+:::
+
 # Aeneas translation
 
 * Tool in active development and we are proud to support it
 * Minimal inconvenience, dealing with coverage problems using patches
 * Aeneas expanding coverage very soon (direct question to Son Ho in audience)
+
+:::class "caption"
+[aeneasverif.github.io](https://aeneasverif.github.io/)
+:::
 
 # Protocol security
 
@@ -105,4 +176,11 @@ Specs and proofs kept growing. The drops come from Lean updates and refactoring:
 
 * End-to-end: Rust code to protocol security, all in Lean
 * Next: proofs in the engineers' hands, run on every change
-* TODO: links
+
+:::class "key-box"
+Signal Shot: [beneficialaifoundation.org/blog/signal-shot](https://www.beneficialaifoundation.org/blog/signal-shot)
+
+Lean: [lean-lang.org](https://lean-lang.org/)
+
+Aeneas: [aeneasverif.github.io](https://aeneasverif.github.io/)
+:::

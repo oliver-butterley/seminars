@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Helvetica,Arial,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+<rect width="960" height="460" fill="#ffffff"/>
+<path d="M362.0,124.0 L726,124.0" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="20" y="48" fill="#64748b" font-size="12" font-weight="600" letter-spacing="0.08em">LIBSIGNAL</text>
+<rect x="20" y="64" width="212" height="84" rx="8" fill="#2b4c7e"/>
+<text x="32" y="98.0" fill="#fff" font-size="15.5" font-weight="600">spqr</text>
+<text x="220" y="98.0" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">7.6k</text>
+<text x="32" y="120.0" fill="#fff" font-size="12.5" opacity="0.88">Sparse Post-Quantum Ratchet</text>
+<rect x="256" y="64" width="212" height="84" rx="8" fill="#2b4c7e"/>
+<text x="268" y="98.0" fill="#fff" font-size="15.5" font-weight="600">libsignal-protocol</text>
+<text x="456" y="98.0" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">12.4k</text>
+<text x="268" y="120.0" fill="#fff" font-size="12.5" opacity="0.88">PQXDH, Double/Triple Ratchet</text>
+<rect x="492" y="64" width="212" height="84" rx="8" fill="#2b4c7e"/>
+<text x="504" y="98.0" fill="#fff" font-size="15.5" font-weight="600">signal-crypto</text>
+<text x="692" y="98.0" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">0.7k</text>
+<text x="504" y="120.0" fill="#fff" font-size="12.5" opacity="0.88">AES modes, hashes, HPKE</text>
+<rect x="728" y="64" width="212" height="84" rx="8" fill="#2b4c7e"/>
+<text x="740" y="98.0" fill="#fff" font-size="15.5" font-weight="600">libsignal-core</text>
+<text x="928" y="98.0" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">1.5k</text>
+<text x="740" y="120.0" fill="#fff" font-size="12.5" opacity="0.88">Curve25519 keys, addresses</text>
+<path d="M256,106.0 L234,106.0" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<path d="M468,106.0 L490,106.0" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<path d="M704,106.0 L726,106.0" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<rect x="20" y="224" width="212" height="160" rx="8" fill="#1f6f54"/>
+<text x="32" y="248" fill="#fff" font-size="15.5" font-weight="600">RustCrypto</text>
+<text x="220" y="248" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">17.5k</text>
+<text x="32" y="270" fill="#fff" font-size="12.5" opacity="0.88">15 crates · used by all four</text>
+<text x="32" y="287" fill="#fff" font-size="12.5" opacity="0.88">aes 6.0k · aes-gcm-siv 0.2k</text>
+<text x="32" y="304" fill="#fff" font-size="12.5" opacity="0.88">ctr 0.7k · cbc 0.4k</text>
+<text x="32" y="321" fill="#fff" font-size="12.5" opacity="0.88">ghash + polyval 1.0k</text>
+<text x="32" y="338" fill="#fff" font-size="12.5" opacity="0.88">sha2 2.6k · sha1 0.8k</text>
+<text x="32" y="355" fill="#fff" font-size="12.5" opacity="0.88">hmac 0.4k · hkdf 0.2k</text>
+<text x="32" y="372" fill="#fff" font-size="12.5" opacity="0.88">traits 5.2k</text>
+<rect x="256" y="224" width="212" height="160" rx="8" fill="#6b3fa0"/>
+<text x="268" y="248" fill="#fff" font-size="15.5" font-weight="600">libcrux</text>
+<text x="456" y="248" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">36.0k</text>
+<text x="268" y="270" fill="#fff" font-size="12.5" opacity="0.88">10 crates (Cryspen)</text>
+<text x="268" y="287" fill="#fff" font-size="12.5" opacity="0.88">ml-kem 16.9k</text>
+<text x="268" y="304" fill="#fff" font-size="12.5" opacity="0.88">hacl-rs (SHA-2, HMAC) 8.7k</text>
+<text x="268" y="321" fill="#fff" font-size="12.5" opacity="0.88">sha3 2.8k · intrinsics 2.1k</text>
+<text x="268" y="338" fill="#fff" font-size="12.5" opacity="0.88">traits 2.0k · secrets 1.2k</text>
+<text x="268" y="355" fill="#fff" font-size="12.5" opacity="0.88">4 smaller crates 2.4k</text>
+<rect x="492" y="224" width="212" height="160" rx="8" fill="#22686a"/>
+<text x="504" y="248" fill="#fff" font-size="15.5" font-weight="600">hpke-rs</text>
+<text x="692" y="248" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">1.5k</text>
+<text x="504" y="270" fill="#fff" font-size="12.5" opacity="0.88">2 crates</text>
+<text x="504" y="287" fill="#fff" font-size="12.5" opacity="0.88">hpke-rs 1.2k</text>
+<text x="504" y="304" fill="#fff" font-size="12.5" opacity="0.88">hpke-rs-crypto 0.3k</text>
+<rect x="728" y="224" width="212" height="160" rx="8" fill="#7a5520"/>
+<text x="740" y="248" fill="#fff" font-size="15.5" font-weight="600">curve25519</text>
+<text x="928" y="248" fill="#fff" font-size="14" text-anchor="end" opacity="0.9">28.1k</text>
+<text x="740" y="270" fill="#fff" font-size="12.5" opacity="0.88">3 crates</text>
+<text x="740" y="287" fill="#fff" font-size="12.5" opacity="0.88">curve25519-dalek 27.4k</text>
+<text x="740" y="304" fill="#fff" font-size="12.5" opacity="0.88">x25519-dalek 0.2k</text>
+<text x="740" y="321" fill="#fff" font-size="12.5" opacity="0.88">dalek-derive 0.4k</text>
+<path d="M126.0,148 L126.0,186.0 L306,186.0 L306,222" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="134.0" y="179.0" fill="#64748b" font-size="12">ML-KEM, HMAC</text>
+<path d="M392.0,148 L392.0,222" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="400.0" y="190.0" fill="#64748b" font-size="12">ML-KEM</text>
+<path d="M598.0,148 L598.0,222" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="606.0" y="190.0" fill="#64748b" font-size="12">HPKE</text>
+<path d="M834.0,148 L834.0,222" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="842.0" y="190.0" fill="#64748b" font-size="12">X25519, XEdDSA</text>
+<path d="M492,284 L470,284" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#ah)"/>
+<text x="20" y="414" fill="#64748b" font-size="12.5">hpke-rs uses libcrux for SHA-3; curve25519-dalek uses RustCrypto digest. Also throughout: subtle (constant-time), zeroize.</text>
+<text x="20" y="434" fill="#64748b" font-size="12.5">Lines of Rust: non-blank, non-comment, src/ only, tests excluded. A → B: A depends on B.</text>
+</svg>

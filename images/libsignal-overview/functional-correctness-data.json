@@ -1,0 +1,391 @@
+{
+ "aes": {
+  "code": 6012,
+  "deps": [
+   "cipher",
+   "zeroize"
+  ],
+  "total": 7752,
+  "version": "0.9.1"
+ },
+ "aes-gcm-siv": {
+  "code": 205,
+  "deps": [
+   "aes",
+   "cipher",
+   "ctr",
+   "polyval",
+   "subtle",
+   "zeroize"
+  ],
+  "total": 370,
+  "version": "0.12.0"
+ },
+ "block-buffer": {
+  "code": 474,
+  "deps": [
+   "zeroize"
+  ],
+  "total": 756,
+  "version": "0.12.1"
+ },
+ "cbc": {
+  "code": 368,
+  "deps": [
+   "cipher"
+  ],
+  "total": 508,
+  "version": "0.2.1"
+ },
+ "chacha20": {
+  "code": 1984,
+  "deps": [
+   "cipher"
+  ],
+  "total": 2765,
+  "version": "0.10.2"
+ },
+ "cipher": {
+  "code": 1852,
+  "deps": [
+   "block-buffer",
+   "crypto-common",
+   "zeroize"
+  ],
+  "total": 2627,
+  "version": "0.5.2"
+ },
+ "crypto-common": {
+  "code": 594,
+  "deps": [],
+  "total": 853,
+  "version": "0.2.2"
+ },
+ "ctr": {
+  "code": 692,
+  "deps": [
+   "cipher"
+  ],
+  "total": 882,
+  "version": "0.10.1"
+ },
+ "curve25519-dalek": {
+  "code": 27430,
+  "deps": [
+   "curve25519-dalek-derive",
+   "digest",
+   "subtle",
+   "zeroize"
+  ],
+  "total": 34619,
+  "version": "5.0.0"
+ },
+ "curve25519-dalek-derive": {
+  "code": 421,
+  "deps": [],
+  "total": 466,
+  "version": "0.1.1"
+ },
+ "digest": {
+  "code": 2152,
+  "deps": [
+   "block-buffer",
+   "crypto-common"
+  ],
+  "total": 2857,
+  "version": "0.11.3"
+ },
+ "ghash": {
+  "code": 91,
+  "deps": [
+   "polyval",
+   "zeroize"
+  ],
+  "total": 123,
+  "version": "0.6.0"
+ },
+ "hax-lib": {
+  "code": 564,
+  "deps": [
+   "hax-lib-macros"
+  ],
+  "total": 822,
+  "version": "0.3.7"
+ },
+ "hax-lib-macros": {
+  "code": 1847,
+  "deps": [
+   "hax-lib-macros-types"
+  ],
+  "total": 2383,
+  "version": "0.3.7"
+ },
+ "hax-lib-macros-types": {
+  "code": 132,
+  "deps": [],
+  "total": 199,
+  "version": "0.3.7"
+ },
+ "hkdf": {
+  "code": 166,
+  "deps": [
+   "hmac"
+  ],
+  "total": 258,
+  "version": "0.13.0"
+ },
+ "hmac": {
+  "code": 359,
+  "deps": [
+   "digest"
+  ],
+  "total": 466,
+  "version": "0.13.0"
+ },
+ "hpke-rs": {
+  "code": 1213,
+  "deps": [
+   "hpke-rs-crypto",
+   "libcrux-sha3",
+   "subtle",
+   "zeroize"
+  ],
+  "total": 1703,
+  "version": "0.7.0"
+ },
+ "hpke-rs-crypto": {
+  "code": 298,
+  "deps": [
+   "zeroize"
+  ],
+  "total": 484,
+  "version": "0.7.0"
+ },
+ "libcrux-hacl-rs": {
+  "code": 8665,
+  "deps": [
+   "libcrux-macros"
+  ],
+  "total": 10561,
+  "version": "0.0.5"
+ },
+ "libcrux-hmac": {
+  "code": 512,
+  "deps": [
+   "libcrux-hacl-rs",
+   "libcrux-macros",
+   "libcrux-sha2",
+   "libcrux-traits"
+  ],
+  "total": 619,
+  "version": "0.0.8"
+ },
+ "libcrux-intrinsics": {
+  "code": 2123,
+  "deps": [
+   "hax-lib"
+  ],
+  "total": 2457,
+  "version": "0.0.8"
+ },
+ "libcrux-macros": {
+  "code": 107,
+  "deps": [],
+  "total": 141,
+  "version": "0.0.3"
+ },
+ "libcrux-ml-kem": {
+  "code": 16873,
+  "deps": [
+   "hax-lib",
+   "libcrux-intrinsics",
+   "libcrux-platform",
+   "libcrux-secrets",
+   "libcrux-sha3",
+   "libcrux-traits"
+  ],
+  "total": 20563,
+  "version": "0.0.10"
+ },
+ "libcrux-platform": {
+  "code": 410,
+  "deps": [],
+  "total": 503,
+  "version": "0.0.3"
+ },
+ "libcrux-secrets": {
+  "code": 1183,
+  "deps": [
+   "hax-lib"
+  ],
+  "total": 1672,
+  "version": "0.0.6"
+ },
+ "libcrux-sha2": {
+  "code": 1337,
+  "deps": [
+   "libcrux-hacl-rs",
+   "libcrux-macros",
+   "libcrux-traits"
+  ],
+  "total": 1554,
+  "version": "0.0.8"
+ },
+ "libcrux-sha3": {
+  "code": 2760,
+  "deps": [
+   "hax-lib",
+   "libcrux-intrinsics",
+   "libcrux-platform",
+   "libcrux-traits"
+  ],
+  "total": 3555,
+  "version": "0.0.10"
+ },
+ "libcrux-traits": {
+  "code": 1984,
+  "deps": [
+   "libcrux-secrets"
+  ],
+  "total": 2820,
+  "version": "0.0.8"
+ },
+ "libsignal-core": {
+  "code": 1471,
+  "deps": [
+   "curve25519-dalek",
+   "libsignal-debug",
+   "sha2",
+   "subtle",
+   "x25519-dalek"
+  ],
+  "total": 1881,
+  "version": "0.1.0"
+ },
+ "libsignal-debug": {
+  "code": 136,
+  "deps": [],
+  "total": 181,
+  "version": "0.103.1"
+ },
+ "libsignal-protocol": {
+  "code": 12385,
+  "deps": [
+   "aes",
+   "aes-gcm-siv",
+   "ctr",
+   "hkdf",
+   "hmac",
+   "libcrux-ml-kem",
+   "libsignal-core",
+   "libsignal-debug",
+   "sha2",
+   "signal-crypto",
+   "spqr",
+   "subtle"
+  ],
+  "total": 15753,
+  "version": "0.1.0"
+ },
+ "polyval": {
+  "code": 954,
+  "deps": [
+   "universal-hash",
+   "zeroize"
+  ],
+  "total": 1469,
+  "version": "0.7.3"
+ },
+ "sha1": {
+  "code": 806,
+  "deps": [
+   "digest"
+  ],
+  "total": 1005,
+  "version": "0.11.0"
+ },
+ "sha1_smol": {
+  "code": 714,
+  "deps": [],
+  "total": 942,
+  "version": "1.0.1"
+ },
+ "sha2": {
+  "code": 2622,
+  "deps": [
+   "digest"
+  ],
+  "total": 3151,
+  "version": "0.11.0"
+ },
+ "signal-crypto": {
+  "code": 724,
+  "deps": [
+   "aes",
+   "cbc",
+   "ctr",
+   "ghash",
+   "hkdf",
+   "hmac",
+   "hpke-rs",
+   "hpke-rs-crypto",
+   "libsignal-core",
+   "libsignal-debug",
+   "sha1",
+   "sha2",
+   "subtle",
+   "zeroize"
+  ],
+  "total": 956,
+  "version": "0.1.0"
+ },
+ "spqr": {
+  "code": 7588,
+  "deps": [
+   "hax-lib",
+   "hkdf",
+   "libcrux-hmac",
+   "libcrux-ml-kem",
+   "sha2"
+  ],
+  "total": 9086,
+  "version": "1.6.0"
+ },
+ "subtle": {
+  "code": 456,
+  "deps": [],
+  "total": 1008,
+  "version": "2.6.1"
+ },
+ "universal-hash": {
+  "code": 104,
+  "deps": [
+   "crypto-common"
+  ],
+  "total": 157,
+  "version": "0.6.1"
+ },
+ "x25519-dalek": {
+  "code": 203,
+  "deps": [
+   "curve25519-dalek",
+   "zeroize"
+  ],
+  "total": 432,
+  "version": "3.0.0"
+ },
+ "zeroize": {
+  "code": 498,
+  "deps": [
+   "zeroize_derive"
+  ],
+  "total": 1061,
+  "version": "1.9.0"
+ },
+ "zeroize_derive": {
+  "code": 763,
+  "deps": [],
+  "total": 870,
+  "version": "1.5.0"
+ }
+}
